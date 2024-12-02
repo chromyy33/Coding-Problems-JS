@@ -76,3 +76,66 @@ function zeroesToEnd(arr) {
 }
 console.log(zeroesToEnd([1, 2, 0, 0, 4, 0, 5]));
 console.log([0, 0]);
+
+//typing test for my new keyboard :)
+
+//This is a typing test for my new keyboard I am not at all good at typing as I do not folow the old coneventions of typing typing on the mac is much easier than an actual keyboard
+//I dont know If I will be able to cope with this type of key board given that I have used similar ones in the past an I feel like the problem happens once I try and start typing fast and do not really register a feel an place ment for the keys now I were to learn to type again I would do it again but my current speed is really slow I need to pick up the pace. Now as the mac is in a screen width mode it is much better and all I am doing now is trying to type without looking at the keyboard with as much accuracy as possible but I do keep missing most of the keys and yes I am not PERFECT! I think what I need to do is try and cover the areas where I am weak and put some time and practise after it.
+
+//
+// Write a function that counts how many different ways you can make change for an amount of money, given an array of coin denominations. For example, there are 3 ways to give change for 4 if you have coins with denomination 1 and 2:
+
+// 1+1+1+1, 1+1+2, 2+2.
+// The order of coins does not matter:
+
+// 1+1+2 == 2+1+1
+// Also, assume that you have an infinite amount of coins.
+
+// Your function should take an amount to change and an array of unique denominations for the coins:
+
+//   countChange(4, [1,2]) // => 3
+//   countChange(10, [5,2,3]) // => 4
+//   countChange(11, [5,7]) //  => 0
+
+// function convertChange(amount, coins) {
+//     const dp = Array(amount + 1).fill(0);
+//     dp[0] = 1; // There's one way to make 0 amount: no coins
+  
+//     for (const coin of coins) {
+//       for (let i = coin; i <= amount; i++) {
+//         dp[i] += dp[i - coin];
+//       }
+//     }
+  
+//     return dp[amount];
+  
+// }
+// console.log(convertChange(10, [5, 2, 3]));
+function countChange(amount, coins) {
+  let count = 0;
+
+  function helper(remaining, index) {
+    console.log(`Checking amount: ${remaining}, using coin index: ${index}`);
+
+    if (remaining === 0) {
+      count++;
+      console.log(`Found a way! Total ways so far: ${count}`);
+      return;
+    }
+
+    if (remaining < 0 || index >= coins.length) {
+      return;
+    }
+
+    // Use the current coin
+    helper(remaining - coins[index], index);
+
+    // Skip the current coin
+    helper(remaining, index + 1);
+  }
+
+  helper(amount, 0);
+  return count;
+}
+
+console.log(countChange(10, [5, 2, 3]));
