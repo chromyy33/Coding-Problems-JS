@@ -100,15 +100,15 @@ console.log([0, 0]);
 // function convertChange(amount, coins) {
 //     const dp = Array(amount + 1).fill(0);
 //     dp[0] = 1; // There's one way to make 0 amount: no coins
-  
+
 //     for (const coin of coins) {
 //       for (let i = coin; i <= amount; i++) {
 //         dp[i] += dp[i - coin];
 //       }
 //     }
-  
+
 //     return dp[amount];
-  
+
 // }
 // console.log(convertChange(10, [5, 2, 3]));
 function countChange(amount, coins) {
@@ -138,4 +138,50 @@ function countChange(amount, coins) {
   return count;
 }
 
-console.log(countChange(10, [5, 2, 3]));
+// console.log(countChange(10, [5, 2, 3]));
+
+//Write a function that retrieves the top 3 longest words of a newspaper headline and transforms them into hashtags. If multiple words tie for the same length, retrieve the word that occurs first.
+
+// Examples
+// getHashTags("How the Avocado Became the Fruit of the Global Trade")
+// ➞ ["#avocado", "#became", "#global"]
+
+// getHashTags("Why You Will Probably Pay More for Your Christmas Tree This Year")
+// ➞ ["#christmas", "#probably", "#will"]
+
+// getHashTags("Hey Parents, Surprise, Fruit Juice Is Not Fruit")
+// ➞ ["#surprise", "#parents", "#fruit"]
+
+// getHashTags("Visualizing Science")
+// ➞ ["#visualizing", "#science"]
+// Notes
+// If the title is less than 3 words, just order the words in the title by length in descending order (see example #4).
+// Punctuation does not count towards a word's length.
+
+function getHashTags(str) {
+  // List of punctuation to remove,can be customized
+  const punctuation = [",", ".", "!", "?", "'", '"', ":", ";", "-", "(", ")", "[", "]", "{", "}", "/"];
+
+  // Split the string into words
+  str =str.split(" ").map((word) => {
+    // Remove punctuation by filtering out unwanted characters
+    return word
+      .split("")
+      .filter((char) => !punctuation.includes(char))
+      .join("");
+  });
+
+  //sort by lenght so that we have first theree big words
+  const sortedArr = str.sort((a, b) => b.length - a.length);
+
+  //slice by detemining if we have more or less than 3 words in the str
+  const sliceLen = str.length < 3 ? str.length : 3;
+
+  //return by maping and adding the # for each word and converting them to lowercase
+  return sortedArr.slice(0, sliceLen).map((tag) => "#" + tag.toLowerCase());
+
+}
+console.log(getHashTags("Hey Parents, Surprise, Fruit Juice Is Not Fruit"));
+console.log(getHashTags("Visualizing Science"));
+
+
