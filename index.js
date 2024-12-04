@@ -160,10 +160,27 @@ function countChange(amount, coins) {
 
 function getHashTags(str) {
   // List of punctuation to remove,can be customized
-  const punctuation = [",", ".", "!", "?", "'", '"', ":", ";", "-", "(", ")", "[", "]", "{", "}", "/"];
+  const punctuation = [
+    ",",
+    ".",
+    "!",
+    "?",
+    "'",
+    '"',
+    ":",
+    ";",
+    "-",
+    "(",
+    ")",
+    "[",
+    "]",
+    "{",
+    "}",
+    "/",
+  ];
 
   // Split the string into words
-  str =str.split(" ").map((word) => {
+  str = str.split(" ").map((word) => {
     // Remove punctuation by filtering out unwanted characters
     return word
       .split("")
@@ -179,9 +196,35 @@ function getHashTags(str) {
 
   //return by maping and adding the # for each word and converting them to lowercase
   return sortedArr.slice(0, sliceLen).map((tag) => "#" + tag.toLowerCase());
-
 }
 console.log(getHashTags("Hey Parents, Surprise, Fruit Juice Is Not Fruit"));
 console.log(getHashTags("Visualizing Science"));
 
+function getNotesDistribution(students) {
+  let res = {};
+  students = students
+    .map((obj) => obj.notes.filter((note) => note > 0))
+    .flat(1);
+  console.log(students);
+  for (const note of students) {
+    if (!res[note]) {
+      res[note] = 1;
+    } else {
+      res[note] += 1;
+    }
+  }
+  return res;
+}
 
+console.log(
+  getNotesDistribution([
+    {
+      name: "Steve",
+      notes: [5, 5, 3, -1, 6],
+    },
+    {
+      name: "John",
+      notes: [3, 2, 5, 0, -3],
+    },
+  ])
+);
