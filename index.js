@@ -367,3 +367,68 @@ function rearrangeSentence(str) {
 
 rearrangeSentence("is2 Thi1s T4est 3a");
 rearrangeSentence("");
+
+// Given an array of integers numbers, return a new array result where each element result[i] represents the product of all the elements in numbers except for numbers[i].
+
+// Input
+// numbers: number[]: An array of integers
+// Notes
+// The product of any prefix or suffix of the numbers array is ensured to fit within a 32-bit integer
+// Use of the division operator is prohibited
+// Examples
+// Input: numbers = [1,2,3]
+// Output: [6,3,2]
+// Explanation: Output is multiplication of all other elements except self, i.e 2*3, 1*3, 1*2
+// Input: numbers = [2,0,3]
+// Output: [0,6,0]
+// Explanation: Output is multiplication of all other elements except self, i.e 0*3, 2*3, 2*0
+// Input: numbers = [0,0,-1,1]
+// Output: [0,0,0,0]
+// Explanation: Output is multiplication of all other elements except self, i.e 0*-1*1, 0*-1*1, 0*0*1, 0*0*-1
+// Constraints
+// 2 <= numbers.length <= 1000
+// -10 <= numbers[i] <= 10
+
+// function productArr(arr) {
+//   const finalArr = [];
+//   let prod;
+//   for (let i = 0; i < arr.length; i++) {
+//     let index = i;
+//     let pairArr = [...arr]
+//     pairArr.splice(index,1);
+//     prod = pairArr.reduce((acc, cur) => {
+//       return acc * cur;
+//     }, 1);
+//     finalArr.push(prod)
+//   }
+//   return finalArr
+// }
+
+// console.log(productArr([1,2, 3, 4, 5,0]));
+// Implement a function that performs binary search on an array of numbers. The function should take in a sorted array of integers and a target integer to find. It returns the index of the target element or -1, if the target element doesn't exist in the array.
+
+// Examples
+// binarySearch([1, 2, 3, 6, 9, 11], 6); // 3
+// binarySearch([1, 2, 3, 12, 14, 16], 5); // -1
+
+function binarySearch(arr, elem) {
+  if (arr.length === 0) return -1; // Base case: not found
+
+  let index = Math.floor(arr.length / 2);
+  let centerElem = arr[index];
+
+  if (centerElem === elem) {
+    return index;
+  }
+  
+  if (centerElem > elem) {
+    return binarySearch(arr.slice(0, index), elem);
+  } else {
+    const result = binarySearch(arr.slice(index + 1), elem);
+    if (result === -1) return -1;
+    else return result + index + 1; // adjust index because we sliced
+  }
+}
+
+
+console.log(binarySearch([1, 2, 3, 6, 9, 11],1));
