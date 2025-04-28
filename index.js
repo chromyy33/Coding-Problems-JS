@@ -411,24 +411,101 @@ rearrangeSentence("");
 // binarySearch([1, 2, 3, 6, 9, 11], 6); // 3
 // binarySearch([1, 2, 3, 12, 14, 16], 5); // -1
 
-function binarySearch(arr, elem) {
-  if (arr.length === 0) return -1; // Base case: not found
+// function binarySearch(arr, elem) {
+//   if (arr.length === 0) return -1; // Base case: not found
 
-  let index = Math.floor(arr.length / 2);
-  let centerElem = arr[index];
+//   let index = Math.floor(arr.length / 2);
+//   let centerElem = arr[index];
 
-  if (centerElem === elem) {
-    return index;
-  }
-  
-  if (centerElem > elem) {
-    return binarySearch(arr.slice(0, index), elem);
-  } else {
-    const result = binarySearch(arr.slice(index + 1), elem);
-    if (result === -1) return -1;
-    else return result + index + 1; // adjust index because we sliced
-  }
+//   if (centerElem === elem) {
+//     return index;
+//   }
+
+//   if (centerElem > elem) {
+//     return binarySearch(arr.slice(0, index), elem);
+//   } else {
+//     const result = binarySearch(arr.slice(index + 1), elem);
+//     if (result === -1) return -1;
+//     else return result + index + 1; // adjust index because we sliced
+//   }
+// }
+
+// console.log(binarySearch([1, 2, 3, 6, 9, 11],1));
+
+// Premier League Champions
+// Create a function that takes an array of football clubs with properties: name, wins, loss, draws, scored, conceded, and returns the team name with the highest number of points. If two teams have the same number of points, return the team with the largest goal difference.
+
+// How to Calculate Points and Goal Difference
+// team = { name: "Manchester United", wins: 30, loss: 3, draws: 5, scored: 88, conceded: 20 }
+
+// Total Points = 3 * wins + 0 * loss + 1 * draws = 3 * 30 + 0 * 3 + 5 * 1 = 95 points
+// Goal Difference = scored - conceded = 88 - 20 = 68
+// Examples
+// champions([
+//   {
+//     name: "Manchester United",
+//     wins: 30,
+//     loss: 3,
+//     draws: 5,
+//     scored: 88,
+//     conceded: 20,
+//   },
+//   {
+//     name: "Arsenal",
+//     wins: 24,
+//     loss: 6,
+//     draws: 8,
+//     scored: 98,
+//     conceded: 29,
+//   },
+//   {
+//     name: "Chelsea",
+//     wins: 22,
+//     loss: 8,
+//     draws: 8,
+//     scored: 98,
+//     conceded: 29,
+//   },
+//   ])
+// ➞ "Manchester United"
+
+function champions(teams) {
+  const teamsWithScore = teams
+    .map((team) => {
+      const points = team.wins * 3 + 1 * team.draws;
+      const goalDiff = team.scored - team.conceded;
+      return { teamName: team.name, points, goalDiff };
+    })
+    .sort((a, b) => {
+      return a.points === b.points
+        ? b.goalDiff - a.goalDiff
+        : b.points - a.points;
+    });
+  console.log(teamsWithScore[0].teamName);
 }
-
-
-console.log(binarySearch([1, 2, 3, 6, 9, 11],1));
+champions([
+  {
+    name: "Manchester United",
+    wins: 30,
+    loss: 3,
+    draws: 5,
+    scored: 88,
+    conceded: 20,
+  },
+  {
+    name: "Arsenal",
+    wins: 29,
+    loss: 6,
+    draws: 8,
+    scored: 98,
+    conceded: 29,
+  },
+  {
+    name: "Chelsea",
+    wins: 22,
+    loss: 8,
+    draws: 8,
+    scored: 98,
+    conceded: 29,
+  },
+]);
