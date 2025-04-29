@@ -469,43 +469,95 @@ rearrangeSentence("");
 //   ])
 // ➞ "Manchester United"
 
-function champions(teams) {
-  const teamsWithScore = teams
-    .map((team) => {
-      const points = team.wins * 3 + 1 * team.draws;
-      const goalDiff = team.scored - team.conceded;
-      return { teamName: team.name, points, goalDiff };
-    })
-    .sort((a, b) => {
-      return a.points === b.points
-        ? b.goalDiff - a.goalDiff
-        : b.points - a.points;
-    });
-  console.log(teamsWithScore[0].teamName);
+// function champions(teams) {
+//   const teamsWithScore = teams
+//     .map((team) => {
+//       const points = team.wins * 3 + 1 * team.draws;
+//       const goalDiff = team.scored - team.conceded;
+//       return { teamName: team.name, points, goalDiff };
+//     })
+//     .sort((a, b) => {
+//       return a.points === b.points
+//         ? b.goalDiff - a.goalDiff
+//         : b.points - a.points;
+//     });
+//   console.log(teamsWithScore[0].teamName);
+// }
+// champions([
+//   {
+//     name: "Manchester United",
+//     wins: 30,
+//     loss: 3,
+//     draws: 5,
+//     scored: 88,
+//     conceded: 20,
+//   },
+//   {
+//     name: "Arsenal",
+//     wins: 29,
+//     loss: 6,
+//     draws: 8,
+//     scored: 98,
+//     conceded: 29,
+//   },
+//   {
+//     name: "Chelsea",
+//     wins: 22,
+//     loss: 8,
+//     draws: 8,
+//     scored: 98,
+//     conceded: 29,
+//   },
+// ]);
+
+// Combine Two Objects Into One, Summing Like Values
+// Take two objects with similar key values and combine them into a new object summing any values that belong to the same category.
+
+// There's a married couple, Hank and his spouse Sheila. Hank works at a power plant making $70,000 a year, and Sheila is a teacher making $40,000 a year. They both earn rental income from separate rental properties, Hank will get $12,000 and Sheila $10,000. The new object will show their separate income but combine the rental income because it fits the same category.
+
+// const user1 = {
+//   powerPlant: 70000,
+//   rental: 12000
+// }
+
+// const user2 = {
+//   teaching: 40000,
+//   rental: 10000
+// }
+
+// becomes ➞ {
+//   powerPlant: 70000,
+//   teaching: 40000,
+//   rental: 22000   // The rental income is added together.
+// }
+// Arguments
+// user1Income (Object) ⁠— an income object for user1
+// user2Income (Object) ⁠— an income object for user2
+// returns: A new object with like values combined
+// Challenges
+// They won't have the same number of key-value pairs.
+// The return object must return the values ordered from lowest to highest so your answers can match the test answers
+const user1 = {
+  powerPlant: 70000,
+  rental: 12000,
+};
+
+const user2 = {
+  teaching: 40000,
+  rental: 10000,
+};
+function combinedIncome(firstUser, secondUser) {
+  const finalObj = { ...firstUser }; // Start with a copy of firstUser
+
+  for (let key in secondUser) {
+    if (finalObj.hasOwnProperty(key)) {
+      finalObj[key] += secondUser[key]; // Sum if key exists
+    } else {
+      finalObj[key] = secondUser[key]; // Add new key
+    }
+  }
+
+  return finalObj;
 }
-champions([
-  {
-    name: "Manchester United",
-    wins: 30,
-    loss: 3,
-    draws: 5,
-    scored: 88,
-    conceded: 20,
-  },
-  {
-    name: "Arsenal",
-    wins: 29,
-    loss: 6,
-    draws: 8,
-    scored: 98,
-    conceded: 29,
-  },
-  {
-    name: "Chelsea",
-    wins: 22,
-    loss: 8,
-    draws: 8,
-    scored: 98,
-    conceded: 29,
-  },
-]);
+//Tried but could not implement, had to look for an easier sol from chat gpt
+combinedIncome(user1, user2);
