@@ -1,3 +1,4 @@
+"use strict";
 // Majority Vote
 // Create a function that returns the majority vote in an array. A majority vote is an element that occurs > N/2 times in an array (where N is the length of the array).
 
@@ -561,3 +562,58 @@ function combinedIncome(firstUser, secondUser) {
 }
 //Tried but could not implement, had to look for an easier sol from chat gpt
 combinedIncome(user1, user2);
+// sampleVar = "Sometext";
+
+// Making a Box 2.0!
+// This is based on Helen Yu's Making a Box challenge. This challenge is the same execpt that instead of an array of strings, your function should output a matrix of characters.
+
+// Examples
+// charBox(1) ➞ [
+//   ["#"]
+// ]
+
+// charBox(4) ➞ [
+//   ["#", "#", "#", "#"],
+//   ["#", " ", " ", "#"],
+//   ["#", " ", " ", "#"],
+//   ["#", "#", "#", "#"]
+// ]
+
+// charBox(2) ➞ [
+//   ["#", "#"],
+//   ["#", "#"]
+// ]
+// Notes
+// As an added bonus, try making charBox(0) output [[]] and make any strings, non-integers, and negative numbers output -1.
+
+function makeBox(number) {
+  if (number === 0) {
+    console.log([[]]);
+    return;
+  }
+  if (typeof number !=="number" || number < 0) {
+    console.log(-1);
+    return;
+  }
+  let finalArr = [];
+  for (let i = 0; i < number; i++) {
+    let arr = new Array(number);
+    if (i === 0 || i === number - 1) {
+      arr.fill("#", 0, number);
+    } else {
+      arr.fill(" ", 0, number);
+      arr[0] = arr[number - 1] = "#";
+    }
+    finalArr[i] = arr;
+  }
+  console.log(finalArr);
+}
+
+makeBox(3);
+makeBox(1);
+makeBox(8);
+makeBox(0);
+
+makeBox("yes");
+
+//tests passed
