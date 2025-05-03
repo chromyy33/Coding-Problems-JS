@@ -591,7 +591,7 @@ function makeBox(number) {
     console.log([[]]);
     return;
   }
-  if (typeof number !=="number" || number < 0) {
+  if (typeof number !== "number" || number < 0) {
     console.log(-1);
     return;
   }
@@ -615,5 +615,120 @@ makeBox(8);
 makeBox(0);
 
 makeBox("yes");
+let keyName = "JS";
+const emptyOb = {};
+emptyOb[keyName] = keyName;
+keyName = "C";
+emptyOb[keyName] = keyName;
 
 //tests passed
+console.log(emptyOb);
+console.log(String());
+
+const originalObj = {
+  firstName: "Adam",
+  age: 21,
+};
+
+function test() {
+  let num = originalObj;
+  num = [];
+  console.log(num);
+}
+test();
+console.log(8 + +"9");
+
+// for (let i = 0; i < 10; i++) {
+//   setTimeout(() => {
+//     console.log(i);
+//   }, 1000*i);
+// }
+// for (var i = 0; i < 10; i++) {
+//   function call(i) {
+//     setTimeout(() => {
+//       console.log(i + 1);
+//     }, 1000 * i);
+//   }
+//   call(i);
+// }
+
+// Tall People
+// Create a function that takes a 2D array as an argument and returns the number of people whose view is blocked by a tall person. The concert stage is pointed towards the top of the 2D array and the tall person (represented by a 2) blocks the view of all the people (represented by a 1) behind them.
+
+// Examples
+// block([
+//   [1, 1, 1, 1, 1],
+//   [1, 1, 1, 1, 1],
+//   [1, 1, 1, 1, 2],
+//   [1, 1, 1, 1, 1],
+//   [1, 1, 1, 1, 1]
+// ]) ➞ 2
+
+// // The tall person blocks 2 people behind him thus
+// // the function returns 2.
+
+// block([
+//   [1, 2, 1, 1],
+//   [1, 1, 1, 2],
+//   [1, 1, 1, 1],
+//   [1, 1, 1, 1],
+// ]) ➞ 5
+
+// // There are 2 tall people that block everyone behind
+// // them. The first tall person in the first row blocks 3
+// // people behind him while the second tall person in
+// // the second row blocks 2 people behind him thus the
+// // function returns 5.
+
+// block([
+//   [1, 1, 1, 1],
+//   [2, 1, 1, 2],
+//   [1, 1, 1, 1],
+//   [1, 1, 1, 1],
+// ]) ➞ 4
+// Notes
+// There is only a maximum of 1 tall person in every column.
+// No view is blocked if the tall person is in the last row.
+
+function countBlockedView(arr) {
+  let count = 0;
+  for (let i = 0; i < arr.length - 1; i++) {
+    if (arr[i].includes(2)) {
+      let countTallPeople = arr[i].filter((a) => {
+        return a === 2;
+      }).length;
+      count += (arr.length - (i + 1)) * countTallPeople;
+    }
+  }
+  console.log(count);
+}
+countBlockedView([
+  [1, 1, 1, 1],
+  [2, 1, 1, 2],
+  [1, 1, 1, 1],
+  [1, 1, 1, 1],
+]);
+countBlockedView([
+  [1, 2, 1, 1],
+  [1, 1, 1, 2],
+  [1, 1, 1, 1],
+  [1, 1, 1, 1],
+]);countBlockedView([
+  [1, 2, 1, 1],
+  [1, 1, 1, 2],
+  [1, 1, 1, 1],
+  [1, 1, 1, 1],
+])
+
+countBlockedView([
+    [1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 2],
+    [1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1]
+  ])
+  countBlockedView([
+    [2, 2, 2],
+    [1, 1, 1],
+    [1, 1, 1]
+  ])
