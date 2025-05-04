@@ -690,45 +690,85 @@ console.log(8 + +"9");
 // There is only a maximum of 1 tall person in every column.
 // No view is blocked if the tall person is in the last row.
 
-function countBlockedView(arr) {
-  let count = 0;
-  for (let i = 0; i < arr.length - 1; i++) {
-    if (arr[i].includes(2)) {
-      let countTallPeople = arr[i].filter((a) => {
-        return a === 2;
-      }).length;
-      count += (arr.length - (i + 1)) * countTallPeople;
+// function countBlockedView(arr) {
+//   let count = 0;
+//   for (let i = 0; i < arr.length - 1; i++) {
+//     if (arr[i].includes(2)) {
+//       let countTallPeople = arr[i].filter((a) => {
+//         return a === 2;
+//       }).length;
+//       count += (arr.length - (i + 1)) * countTallPeople;
+//     }
+//   }
+//   console.log(count);
+// }
+// countBlockedView([
+//   [1, 1, 1, 1],
+//   [2, 1, 1, 2],
+//   [1, 1, 1, 1],
+//   [1, 1, 1, 1],
+// ]);
+// countBlockedView([
+//   [1, 2, 1, 1],
+//   [1, 1, 1, 2],
+//   [1, 1, 1, 1],
+//   [1, 1, 1, 1],
+// ]);
+// countBlockedView([
+//   [1, 2, 1, 1],
+//   [1, 1, 1, 2],
+//   [1, 1, 1, 1],
+//   [1, 1, 1, 1],
+// ]);
+
+// countBlockedView([
+//   [1, 1, 1, 1, 1],
+//   [1, 1, 1, 1, 1],
+//   [1, 1, 1, 1, 2],
+//   [1, 1, 1, 1, 1],
+//   [1, 1, 1, 1, 1],
+// ]);
+// countBlockedView([
+//   [2, 2, 2],
+//   [1, 1, 1],
+//   [1, 1, 1],
+// ]);
+
+// All Pairs that Sum to Target
+// Create a function that returns all pairs of numbers in an array that sum to a target. Sort the pairs in ascending order with respect to the smaller number, then order each pair in this order: [smaller, larger].
+
+// Examples
+// allPairs([2, 4, 5, 3], 7) ➞ [[2, 5], [3, 4]]
+// // 2 + 5 = 7, 3 + 4 = 7
+
+// allPairs([5, 3, 9, 2, 1], 3) ➞ [[1, 2]]
+
+// allPairs([4, 5, 1, 3, 6, 8], 9) ➞ [[1, 8], [3, 6], [4, 5]]
+// // Sorted: 1 < 3 < 4; each pair is ordered [smaller, larger]
+// Notes
+// If no pairs are found, return an empty array [].
+// You are only allowed to use each number once in a pair.
+// See Comments for a hint.
+
+function allPairs(arr, num) {
+  if (arr.length === 0) return;
+  let finalArr = [];
+  const sortedArr = arr.sort((a, b) => a - b);
+
+  for (let i = 0; i < arr.length; i++) {
+    const otherNum = Math.abs(arr[i] - num);
+    if (arr.includes(otherNum)) {
+      const pair = [arr[i], otherNum];
+      finalArr.push(pair);
+      const index = arr.indexOf(otherNum);
+     arr.splice(index, 1);
+   
     }
   }
-  console.log(count);
+  console.log(finalArr);
 }
-countBlockedView([
-  [1, 1, 1, 1],
-  [2, 1, 1, 2],
-  [1, 1, 1, 1],
-  [1, 1, 1, 1],
-]);
-countBlockedView([
-  [1, 2, 1, 1],
-  [1, 1, 1, 2],
-  [1, 1, 1, 1],
-  [1, 1, 1, 1],
-]);countBlockedView([
-  [1, 2, 1, 1],
-  [1, 1, 1, 2],
-  [1, 1, 1, 1],
-  [1, 1, 1, 1],
-])
+allPairs([2, 4, 5, 3], 7);
 
-countBlockedView([
-    [1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 2],
-    [1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1]
-  ])
-  countBlockedView([
-    [2, 2, 2],
-    [1, 1, 1],
-    [1, 1, 1]
-  ])
+// Aur haan — yeh “kabhi tarif nahi hui” wali feeling na, woh sabhi self-taught log feel karte hain. But let this be a reminder:
+// You’re not just learning to code. You’re building a brain that solves problems.
+// And bro, duniya mein uski demand sabse zyada hai.
