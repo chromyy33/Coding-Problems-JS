@@ -761,8 +761,7 @@ function allPairs(arr, num) {
       const pair = [arr[i], otherNum];
       finalArr.push(pair);
       const index = arr.indexOf(otherNum);
-     arr.splice(index, 1);
-   
+      arr.splice(index, 1);
     }
   }
   console.log(finalArr);
@@ -772,3 +771,129 @@ allPairs([2, 4, 5, 3], 7);
 // Aur haan — yeh “kabhi tarif nahi hui” wali feeling na, woh sabhi self-taught log feel karte hain. But let this be a reminder:
 // You’re not just learning to code. You’re building a brain that solves problems.
 // And bro, duniya mein uski demand sabse zyada hai.
+
+// 1. Create unique symbols for 'userId' and 'password'
+const userIdSymbol = Symbol("userId");
+const passwordSymbol = Symbol("password");
+
+// 2. Create an object for the user
+const user = {};
+
+// 3. Assign the symbols as property keys with values
+user[userIdSymbol] = 12345; // userIdSymbol will be the key
+user[passwordSymbol] = "secret123"; // passwordSymbol will be the key
+
+// 4. Now, if you log the object, you'll see the symbol keys (but they won't show in normal object enumeration)
+console.log(user); // Output: { [Symbol(userId)]: 12345, [Symbol(password)]: 'secret123' }
+
+// 5. Try to log the user object with regular object enumeration methods
+console.log(Object.keys(user)); // Output: [] - Symbols don't show up in Object.keys()
+
+// 6. Access the values using the symbols (to prevent collisions)
+console.log(user[userIdSymbol]); // Output: 12345
+console.log(user[passwordSymbol]); // Output: 'secret123'
+
+const symbolKey = Symbol("id");
+
+const obj = {
+  [symbolKey]: 12345,
+};
+
+console.log(obj); // Output: { [Symbol(id)]: 12345 }
+
+// Trying to change the symbol key (this will not work)
+obj[symbolKey] = 67890; // This changes the value associated with the symbol key, not the key itself
+
+// You cannot do this to change the key itself
+// obj['newSymbol'] = 123; // This would add a new key-value pair with a string as a key, NOT change the symbol key
+
+console.log(obj); // Output: { [Symbol(id)]: 67890 }
+console.log(obj[symbolKey]); // Output: 67890
+
+// const btn = document.getElementById("cart");
+// const btnFast = document.getElementById("cart-fast");
+// function addToCart() {
+//   let message = "";
+//   setTimeout(() => {
+//     message = "Added to Cart";
+//     console.log(message);
+//   }, 3000);
+// }
+
+// function addToCartFast() {
+//   addToCart();
+//   return function () {
+//     console.log(message);
+//   };
+// }
+
+// const curriedFN = addToCartFast();
+// btn.addEventListener("click", addToCart);
+// btnFast.addEventListener("click", curriedFN);
+
+// Mean
+
+// Implement a function mean(array) that returns the mean (also known as average) of the values inside array, which is an array of numbers.
+
+// Arguments
+// array (Array): Array of numbers.
+// Returns
+// (Number): Returns the mean of the values in array.
+
+// Examples
+// mean([4, 2, 8, 6]); // => 5
+// mean([1, 2, 3, 4]); // => 2.5
+// mean([1, 2, 2]); // => 1.6666666666666667
+
+function mean(arr) {
+  const len = arr.length;
+  if (len === 0) return NaN;
+  const sum = arr.reduce((acc, curr) => {
+    return acc + curr;
+  }, 0);
+  return sum / len;
+}
+console.log(mean([]));
+console.log(mean([1, 2, 3, 4, 5, 9, 4, 3, 1, 2, 3, 22]));
+
+// Remove the Last Vowel
+// Write a function that removes the last vowel in each word in a sentence.
+
+// Examples
+// removeLastVowel("Those who dare to fail miserably can achieve greatly.")
+// ➞ "Thos wh dar t fal miserbly cn achiev gretly."
+
+// removeLastVowel("Love is a serious mental disease.")
+// ➞ "Lov s  serios mentl diseas"
+
+// removeLastVowel("Get busy living or get busy dying.")
+// ➞ "Gt bsy livng r gt bsy dyng"
+
+function removeLastVowel(str) {
+  let finalStr = "";
+  const vowels = ["a", "e", "i", "o", "u"];
+  const splitStr = str.split(" ");
+
+  function remove(word) {
+    for (let i = word.length - 1; i >= 0; i--) {
+      if (vowels.includes(word[i].toLowerCase())) {
+        return word.slice(0, i) + word.slice(i + 1);
+        
+      }
+    }
+    return word; // in case there's no vowel
+  }
+
+  for (let i = 0; i < splitStr.length; i++) {
+    const processed = remove(splitStr[i]);
+    finalStr += processed;
+    if (i !== splitStr.length - 1) {
+      finalStr += " ";
+    }
+  }
+
+  console.log(finalStr);
+}
+
+removeLastVowel("Those who dare to fail miserably can achieve greatly.");
+const string="Disatisfied"
