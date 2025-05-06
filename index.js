@@ -926,7 +926,7 @@ function balanceWords(str) {
 
     const [firstHalf, secondHalf] = [
       str.slice(0, middleIndex),
-      str.slice(middleIndex + 1),
+      str.slice(len % 2 === 0 ? middleIndex : middleIndex + 1),
     ];
     const mapAndAdd = (s) =>
       [...s].reduce((acc, char) => acc + char.charCodeAt(0) - 96, 0);
@@ -937,4 +937,4 @@ function balanceWords(str) {
   }
 }
 
-balanceWords("asbbbba");
+balanceWords("zips");
