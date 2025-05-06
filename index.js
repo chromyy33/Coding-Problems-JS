@@ -886,10 +886,8 @@ function removeLastVowel(str) {
 
   for (let i = 0; i < splitStr.length; i++) {
     const processed = remove(splitStr[i]);
-    finalStr += processed;
-    if (i !== splitStr.length - 1) {
-      finalStr += " ";
-    }
+    finalStr += processed + ' ';
+    
   }
 
   console.log(finalStr);
