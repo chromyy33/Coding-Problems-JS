@@ -938,3 +938,19 @@ function balanceWords(str) {
 }
 
 balanceWords("zips");
+
+// write a pollyfill for arr.length
+
+function lengthArr(arr) {
+  let length = 0;
+  let i = 0;
+  while (arr[i] !== undefined) {
+    length++;
+    i++;
+  }
+  console.log(length);
+}
+lengthArr([2, 3, 4, 5, 6,8]);
+
+//did not want to break the streak so this format
+
