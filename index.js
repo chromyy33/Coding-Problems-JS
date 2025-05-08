@@ -953,4 +953,3 @@ function lengthArr(arr) {
 lengthArr([2, 3, 4, 5, 6,8]);
 
 //did not want to break the streak so this format
-
