@@ -845,111 +845,162 @@ console.log(obj[symbolKey]); // Output: 67890
 // mean([1, 2, 3, 4]); // => 2.5
 // mean([1, 2, 2]); // => 1.6666666666666667
 
-function mean(arr) {
-  const len = arr.length;
-  if (len === 0) return NaN;
-  const sum = arr.reduce((acc, curr) => {
-    return acc + curr;
-  }, 0);
-  return sum / len;
-}
-console.log(mean([]));
-console.log(mean([1, 2, 3, 4, 5, 9, 4, 3, 1, 2, 3, 22]));
+// function mean(arr) {
+//   const len = arr.length;
+//   if (len === 0) return NaN;
+//   const sum = arr.reduce((acc, curr) => {
+//     return acc + curr;
+//   }, 0);
+//   return sum / len;
+// }
+// console.log(mean([]));
+// console.log(mean([1, 2, 3, 4, 5, 9, 4, 3, 1, 2, 3, 22]));
 
-// Remove the Last Vowel
-// Write a function that removes the last vowel in each word in a sentence.
+// // Remove the Last Vowel
+// // Write a function that removes the last vowel in each word in a sentence.
+
+// // Examples
+// // removeLastVowel("Those who dare to fail miserably can achieve greatly.")
+// // ➞ "Thos wh dar t fal miserbly cn achiev gretly."
+
+// // removeLastVowel("Love is a serious mental disease.")
+// // ➞ "Lov s  serios mentl diseas"
+
+// // removeLastVowel("Get busy living or get busy dying.")
+// // ➞ "Gt bsy livng r gt bsy dyng"
+
+// function removeLastVowel(str) {
+//   let finalStr = "";
+//   const vowels = ["a", "e", "i", "o", "u"];
+//   const splitStr = str.split(" ");
+
+//   function remove(word) {
+//     for (let i = word.length - 1; i >= 0; i--) {
+//       if (vowels.includes(word[i].toLowerCase())) {
+//         return word.slice(0, i) + word.slice(i + 1);
+//       }
+//     }
+//     return word; // in case there's no vowel
+//   }
+
+//   for (let i = 0; i < splitStr.length; i++) {
+//     const processed = remove(splitStr[i]);
+//     finalStr += processed + " ";
+//   }
+
+//   console.log(finalStr);
+// }
+
+// removeLastVowel("Those who dare to fail miserably can achieve greatly.");
+// const string = "Disatisfied";
+
+// function User(name, email) {
+//   console.log(this);
+// }
+
+// const userMayank = new User();
+// // console.log(userMayank);
+
+// // Balanced Words
+// // We can assign a value to each character in a word, based on their position in the alphabet (a = 1, b = 2, ... , z = 26). A balanced word is one where the sum of values on the left-hand side of the word equals the sum of values on the right-hand side. For odd length words, the middle character (balance point) is ignored.
+
+// // Write a function that returns true if the word is balanced, and false if it's not.
+
+// // Examples
+// // balanced("zips") ➞ true
+// // // "zips" = "zi|ps" = 26+9|16+19 = 35|35 = true
+
+// // balanced("brake") ➞ false
+// // // "brake" = "br|ke" = 2+18|11+5 = 20|16 = false
+// // Notes
+// // All words will be lowercase, and have a minimum of 2 characters.
+// // Palindromic words will always be balanced.
+
+// function balanceWords(str) {
+//   if (str === str.split("").reverse().join("")) {
+//     console.log("Balanced");
+//     return;
+//   } else {
+//     const len = str.length;
+//     const middleIndex = Math.floor(len / 2);
+
+//     const [firstHalf, secondHalf] = [
+//       str.slice(0, middleIndex),
+//       str.slice(len % 2 === 0 ? middleIndex : middleIndex + 1),
+//     ];
+//     const mapAndAdd = (s) =>
+//       [...s].reduce((acc, char) => acc + char.charCodeAt(0) - 96, 0);
+
+//     console.log(mapAndAdd(firstHalf), mapAndAdd(secondHalf));
+//     const isBalanced = mapAndAdd(firstHalf) === mapAndAdd(secondHalf);
+//     console.log(isBalanced);
+//   }
+// }
+
+// balanceWords("zips");
+
+// // write a pollyfill for arr.length
+
+// function lengthArr(arr) {
+//   let length = 0;
+//   let i = 0;
+//   while (arr[i] !== undefined) {
+//     length++;
+//     i++;
+//   }
+//   console.log(length);
+// }
+// lengthArr([2, 3, 4, 5, 6,8]);
+
+// //did not want to break the streak so this format
+
+// Shuffled Properly?
+// Given an array of 10 numbers, return whether or not the array is shuffled sufficiently enough. In this case, if 3 or more numbers appear consecutively (ascending or descending), return false.
 
 // Examples
-// removeLastVowel("Those who dare to fail miserably can achieve greatly.")
-// ➞ "Thos wh dar t fal miserbly cn achiev gretly."
+// isShuffledWell([1, 2, 3, 5, 8, 6, 9, 10, 7, 4]) ➞ false
+// // 1, 2, 3 appear consecutively
 
-// removeLastVowel("Love is a serious mental disease.")
-// ➞ "Lov s  serios mentl diseas"
+// isShuffledWell([3, 5, 1, 9, 8, 7, 6, 4, 2, 10]) ➞ false
+// // 9, 8, 7, 6 appear consecutively
 
-// removeLastVowel("Get busy living or get busy dying.")
-// ➞ "Gt bsy livng r gt bsy dyng"
+// isShuffledWell([1, 5, 3, 8, 10, 2, 7, 6, 4, 9]) ➞ true
+// // No consecutive numbers appear
 
-function removeLastVowel(str) {
-  let finalStr = "";
-  const vowels = ["a", "e", "i", "o", "u"];
-  const splitStr = str.split(" ");
+// isShuffledWell([1, 3, 5, 7, 9, 2, 4, 6, 8, 10]) ➞ true
+// // No consecutive numbers appear
 
-  function remove(word) {
-    for (let i = word.length - 1; i >= 0; i--) {
-      if (vowels.includes(word[i].toLowerCase())) {
-        return word.slice(0, i) + word.slice(i + 1);
-      }
+//Approach here is to check the differnce between the current num and the the next two consecutive num, ex 2,3,4 will result in 3-2 4-2 in 1 and 2 respectively
+
+// function isShuffledWell(arr) {
+//   let flag = true; // Start assuming it's well shuffled
+//   for (let i = 0; i < arr.length - 2; i++) {
+//     let curr = arr[i];
+//     const diffOne = arr[i + 1] - curr;
+//     if (diffOne !== 1) {
+//       continue;
+//     } else {
+//       const diffTwo = arr[i + 2] - curr;
+//       if (diffTwo === 2) {
+//         flag = false;
+//         break;
+//       }
+//     }
+//   }
+//   return flag;
+// }
+
+
+function isShuffledWell(arr) {
+  for (let i = 0; i < arr.length - 2; i++) {
+    if (arr[i + 1] === arr[i] + 1 && arr[i + 2] === arr[i] + 2) {// 2===1+1 && 3===1+2
+      return false; // Not well shuffled
     }
-    return word; // in case there's no vowel
   }
-
-  for (let i = 0; i < splitStr.length; i++) {
-    const processed = remove(splitStr[i]);
-    finalStr += processed + " ";
-  }
-
-  console.log(finalStr);
+  return true; // Well shuffled
 }
 
-removeLastVowel("Those who dare to fail miserably can achieve greatly.");
-const string = "Disatisfied";
+console.log(isShuffledWell([1, 2, 7, 4, 5, 6, 0])); // true
+console.log(isShuffledWell([1, 2, 3, 5, 6, 0]));    // false
 
-function User(name, email) {
-  console.log(this);
-}
-
-const userMayank = new User();
-// console.log(userMayank);
-
-// Balanced Words
-// We can assign a value to each character in a word, based on their position in the alphabet (a = 1, b = 2, ... , z = 26). A balanced word is one where the sum of values on the left-hand side of the word equals the sum of values on the right-hand side. For odd length words, the middle character (balance point) is ignored.
-
-// Write a function that returns true if the word is balanced, and false if it's not.
-
-// Examples
-// balanced("zips") ➞ true
-// // "zips" = "zi|ps" = 26+9|16+19 = 35|35 = true
-
-// balanced("brake") ➞ false
-// // "brake" = "br|ke" = 2+18|11+5 = 20|16 = false
-// Notes
-// All words will be lowercase, and have a minimum of 2 characters.
-// Palindromic words will always be balanced.
-
-function balanceWords(str) {
-  if (str === str.split("").reverse().join("")) {
-    console.log("Balanced");
-    return;
-  } else {
-    const len = str.length;
-    const middleIndex = Math.floor(len / 2);
-
-    const [firstHalf, secondHalf] = [
-      str.slice(0, middleIndex),
-      str.slice(len % 2 === 0 ? middleIndex : middleIndex + 1),
-    ];
-    const mapAndAdd = (s) =>
-      [...s].reduce((acc, char) => acc + char.charCodeAt(0) - 96, 0);
-
-    console.log(mapAndAdd(firstHalf), mapAndAdd(secondHalf));
-    const isBalanced = mapAndAdd(firstHalf) === mapAndAdd(secondHalf);
-    console.log(isBalanced);
-  }
-}
-
-balanceWords("zips");
-
-// write a pollyfill for arr.length
-
-function lengthArr(arr) {
-  let length = 0;
-  let i = 0;
-  while (arr[i] !== undefined) {
-    length++;
-    i++;
-  }
-  console.log(length);
-}
-lengthArr([2, 3, 4, 5, 6,8]);
-
-//did not want to break the streak so this format
+console.log(isShuffledWell([1, 2, 7, 4, 5, 6, 0]));
