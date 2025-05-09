@@ -990,17 +990,61 @@ console.log(obj[symbolKey]); // Output: 67890
 //   return flag;
 // }
 
+// function isShuffledWell(arr) {
+//   for (let i = 0; i < arr.length - 2; i++) {
+//     if (arr[i + 1] === arr[i] + 1 && arr[i + 2] === arr[i] + 2) {// 2===1+1 && 3===1+2
+//       return false; // Not well shuffled
+//     }
+//   }
+//   return true; // Well shuffled
+// }
 
-function isShuffledWell(arr) {
-  for (let i = 0; i < arr.length - 2; i++) {
-    if (arr[i + 1] === arr[i] + 1 && arr[i + 2] === arr[i] + 2) {// 2===1+1 && 3===1+2
-      return false; // Not well shuffled
-    }
-  }
-  return true; // Well shuffled
+// console.log(isShuffledWell([1, 2, 7, 4, 5, 6, 0])); // true
+// console.log(isShuffledWell([1, 2, 3, 5, 6, 0]));    // false
+
+// console.log(isShuffledWell([1, 2, 7, 4, 5, 6, 0]));
+
+//Interview Prerp Series
+
+// Question 1: Remove Duplicate Characters from a String
+// Write a JavaScript function that removes all duplicate characters from a given string.
+// Example Input: "priya riya supriya"
+// Expected Output: A string with only the first occurrence of each character.
+
+// Question 2: Remove Duplicates from an Array and Count Unique Elements
+// Using the Set object in JavaScript, write a script to:
+
+// Remove duplicate elements from the given array.
+
+// Count the number of unique elements.
+// Example Input:
+// [55, 44, 55, 67, 67, 67, 67, 8, 8, 8, 8, 8, 65, 1, 2, 3, 3, 34, 5]
+// Expected Output: An array with unique elements and the total count.
+
+// function removeDuplicate(str) {
+//   const splitArr = str.split("");
+//   const setArr = [...new Set(splitArr)].join("");
+//   console.log(setArr);
+// }
+
+// removeDuplicate("priya riya supriya");
+
+// function removeDuplicate(str) {
+//   let finalArr = [];
+//   const splitArr = str.split("");
+//   splitArr.filter((char) => {
+//     !finalArr.includes(char) ? finalArr.push(char) : "";
+//   });
+//   console.log(finalArr.join(''));
+// }
+// removeDuplicate("priya riya supriya");
+
+function removeDuplicatedArr(arr) {
+  // const finalArr = [...new Set(arr)].length;
+  const finalArr = new Set(arr).size;
+
+  console.log(finalArr);
 }
-
-console.log(isShuffledWell([1, 2, 7, 4, 5, 6, 0])); // true
-console.log(isShuffledWell([1, 2, 3, 5, 6, 0]));    // false
-
-console.log(isShuffledWell([1, 2, 7, 4, 5, 6, 0]));
+removeDuplicatedArr([
+  55, 44, 55, 67, 67, 67, 67, 8, 8, 8, 8, 8, 65, 1, 2, 3, 3, 34, 5,
+]);
