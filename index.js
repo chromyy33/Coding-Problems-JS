@@ -1039,12 +1039,104 @@ console.log(obj[symbolKey]); // Output: 67890
 // }
 // removeDuplicate("priya riya supriya");
 
-function removeDuplicatedArr(arr) {
-  // const finalArr = [...new Set(arr)].length;
-  const finalArr = new Set(arr).size;
+// function removeDuplicatedArr(arr) {
+//   // const finalArr = [...new Set(arr)].length;
+//   const finalArr = new Set(arr).size;
 
+//   console.log(finalArr);
+// }
+// removeDuplicatedArr([
+//   55, 44, 55, 67, 67, 67, 67, 8, 8, 8, 8, 8, 65, 1, 2, 3, 3, 34, 5,
+// ]);
+
+//mental modelling callbacks
+
+// function greetUser(name, cb) {
+//   console.log(`Hey ${name}`, cb());
+// }
+// function Bye() {
+//   return "Goodbye";
+// }
+// console.log(greetUser("Mayank", Bye));
+
+// const a = 90;
+// function getData1(cb) {
+//   let i = 0;
+//   while (i < 1000000000) {
+//     i++;
+//   }
+//   let b = 1;
+//   cb(b);
+// }
+// getData1(add);
+
+// function add(num) {
+//   const res = num + a;
+//   console.log(res);
+// }
+// const a2 = 90;
+// function getData2() {
+//   let i = 0;
+
+//   while (i < 1_00_00_00_000) {
+//     i++;
+//   }
+//   let b = 1;
+//   return b;
+// }
+// getData2();
+// let res = a2 + getData2();
+// console.log(res);
+
+//
+function toUppercaseFirstChar(str) {
+  const splitArr = str.split(" ");
+  const finalArr = splitArr
+    .map(
+      (char) => char[0].toUpperCase() + char.slice(1, char.length + 1) + "\n"
+    )
+    .join("");
   console.log(finalArr);
 }
-removeDuplicatedArr([
-  55, 44, 55, 67, 67, 67, 67, 8, 8, 8, 8, 8, 65, 1, 2, 3, 3, 34, 5,
-]);
+toUppercaseFirstChar("my name is mayank");
+
+//Write a function to shuffle an array.
+
+// function shuffleArr(arr) {
+//   let randomIndex;
+//   let i = 0;
+//   let shuffledIndex = [];
+//   let finalShuffledArr = [];
+//   const currentSeq = [...new Array(arr.length).fill(0).map((_, i) => i)];
+//   while (shuffledIndex.length < arr.length) {
+//     randomIndex = Math.floor(Math.random() * arr.length);
+//     if (randomIndex !== currentSeq[i]) {
+//       if (!shuffledIndex.includes(randomIndex)) {
+//         shuffledIndex.push(randomIndex);
+//         finalShuffledArr.push(arr[randomIndex]);
+//       }
+//       i++;
+//     }
+//   }
+//   console.log(shuffledIndex);
+//   console.log(finalShuffledArr);
+// }
+
+function shuffleArr(arr) {
+  let randomIndex;
+  let i = 0;
+  let shuffledIndex = [];
+  let finalShuffledArr = [];
+  const currentSeq = [...new Array(arr.length).fill(0).map((_, i) => i)];
+  while (shuffledIndex.length < arr.length) {
+    randomIndex = Math.floor(Math.random() * arr.length);
+    if (randomIndex !== currentSeq[i] && !shuffledIndex.includes(randomIndex)) {
+      shuffledIndex.push(randomIndex);
+      finalShuffledArr.push(arr[randomIndex]);
+      i++;
+    }
+  }
+  console.log(finalShuffledArr);
+}
+
+shuffleArr(["car", "bike", "train", "plane", "scooter", "boat", "ship"]);
