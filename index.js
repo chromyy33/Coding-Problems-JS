@@ -1122,21 +1122,65 @@ toUppercaseFirstChar("my name is mayank");
 //   console.log(finalShuffledArr);
 // }
 
-function shuffleArr(arr) {
-  let randomIndex;
-  let i = 0;
-  let shuffledIndex = [];
-  let finalShuffledArr = [];
-  const currentSeq = [...new Array(arr.length).fill(0).map((_, i) => i)];
-  while (shuffledIndex.length < arr.length) {
-    randomIndex = Math.floor(Math.random() * arr.length);
-    if (randomIndex !== currentSeq[i] && !shuffledIndex.includes(randomIndex)) {
-      shuffledIndex.push(randomIndex);
-      finalShuffledArr.push(arr[randomIndex]);
-      i++;
-    }
+// function shuffleArr(arr) {
+//   let randomIndex;
+//   let i = 0;
+//   let shuffledIndex = [];
+//   let finalShuffledArr = [];
+//   const currentSeq = [...new Array(arr.length).fill(0).map((_, i) => i)];
+//   while (shuffledIndex.length < arr.length) {
+//     randomIndex = Math.floor(Math.random() * arr.length);
+//     if (randomIndex !== currentSeq[i] && !shuffledIndex.includes(randomIndex)) {
+//       shuffledIndex.push(randomIndex);
+//       finalShuffledArr.push(arr[randomIndex]);
+//       i++;
+//     }
+//   }
+//   console.log(finalShuffledArr);
+// }
+
+// shuffleArr(["car", "bike", "train", "plane", "scooter", "boat", "ship"]);
+
+//Shift zeros to the right of an array and return its count
+
+function shiftZeros(arr) {
+  let count = 0;
+  //Early return
+  if (!arr.includes(0)) {
+    console.log(count);
+    return;
   }
-  console.log(finalShuffledArr);
+  if ([...new Set(arr)].length === 1) {
+    count = arr.length;
+    console.log(count);
+    return;
+  }
+  const sortedArr = [...arr].sort((a, b) => b - a);
+  for (let i = sortedArr.length - 1; i >= 0; i--) {
+    if (sortedArr[i] !== 0) break;
+    count++;
+  }
+  console.log(count);
+}
+// keep original seq and remove duplicates
+function shiftZeros(arr) {
+  let count = 0;
+  //Early return
+  if (!arr.includes(0)) {
+    console.log(count);
+    return;
+  }
+  if ([...new Set(arr)].length === 1) {
+    count = arr.length;
+    console.log(count);
+    return;
+  }
+  const filterdArr = [...arr].filter((a) => a !== 0);
+  count = arr.length - filterdArr.length;
+  const finalArr = [...new Set(filterdArr), ...new Array(count).fill(0)];
+  console.log(finalArr);
 }
 
-shuffleArr(["car", "bike", "train", "plane", "scooter", "boat", "ship"]);
+shiftZeros([4, 3, 6, 4, 2, 0, 0, 3, 5, 0, 3, 0]);
+shiftZeros([4, 3, 6, 4, 2, 0]);
+shiftZeros([0, 0]);
