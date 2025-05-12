@@ -1,0 +1,32 @@
+body {
+  background-color: #111;
+  color: white;
+  font-family: sans-serif;
+}
+.loaded {
+  width: 200px;
+  height: 300px;
+  position: relative;
+}
+.loaded::after {
+  content: "Loading...";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  animation: pulse .5s ease-in-out infinite;
+}
+.flex {
+  display: flex;
+  column-gap: 1rem;
+}
+@keyframes pulse {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
