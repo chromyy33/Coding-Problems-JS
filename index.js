@@ -1256,4 +1256,32 @@
 // function flattenArray(arr) {
 //   console.log(arr.flat(Infinity));
 // }
-flattenArray([2, 3, 5,[true,false], [[2, [3], 3, 47, 6, [[3, [3]]]]]]);
+// flattenArray([2, 3, 5,[true,false], [[2, [3], 3, 47, 6, [[3, [3]]]]]]);
+
+// Implement a basic string compression algorithm. For
+// example, the string "aaabbbcc" should be compressed to
+// "a3b3c2".
+//aabbccaa
+function compressStr(str) {
+  const strArr = str.split("");
+  let finalStr = "";
+  let currItem = strArr[0];
+  let count = 1;
+  
+  for (let i = 1; i < strArr.length; i++) {
+    if (strArr[i] === currItem) {
+      count++;
+    } else {
+      finalStr += currItem + count;
+      currItem = strArr[i];
+      count = 1;
+    }
+  }
+
+  // Append the last group
+  finalStr += currItem + count;
+
+  console.log(finalStr);
+}
+
+compressStr("aabbccd"); // Output: a2b2c2d1
