@@ -1267,7 +1267,7 @@ function compressStr(str) {
   let finalStr = "";
   let currItem = strArr[0];
   let count = 1;
-  
+
   for (let i = 1; i < strArr.length; i++) {
     if (strArr[i] === currItem) {
       count++;
@@ -1285,3 +1285,61 @@ function compressStr(str) {
 }
 
 compressStr("aabbccd"); // Output: a2b2c2d1
+
+let x = 1;
+let y = x++;
+function someFunction(a) {
+  return a;
+}
+someFunction(y);
+console.log(y);
+//
+
+// function validRondo(str) {
+//   let isRondo = false;
+//   const len = str.length;
+//   if (len >= 3 && len % 2 === 1 && str[len - 1] === "A" && str[0] === "A") {
+//     const splitArr = str.split("");
+//     const startElem = 65;
+//     for (let i = 1; i <= len; i++) {
+//       const isOdd = i % 2 === 1;
+//       if (
+//         splitArr[i - 1].charCodeAt(0) !==
+//         (!isOdd ? startElem + i - 1 : startElem)
+//       ) {
+//         return (isRondo = true);
+//       }
+//     }
+//   }
+//   return isRondo;
+// }
+function validRondo(str) {
+  let isRondo = true;
+  const len = str.length;
+  let isOdd;
+  let j = 0;
+
+  if (len >= 3 && len % 2 === 1 && str[0] === "A" && str[len - 1] === "A") {
+    const splitArr = str.split("");
+    const startElem = 65;
+
+    for (let i = 1; i < len; i++) {
+      isOdd = i % 2 === 1;
+      !isOdd ? j++ : j;
+
+      const expectedCharCode = !isOdd ? startElem + j : startElem;
+      const actualCharCode = splitArr[i - 1].charCodeAt(0); // ✅ fixed here
+      if (actualCharCode !== expectedCharCode) {
+        isRondo = false;
+        break;
+      }
+    }
+  } else {
+    isRondo = false;
+  }
+
+  return isRondo;
+}
+
+const isValid = validRondo("ABACADA");
+console.log(isValid); // ✅ true
