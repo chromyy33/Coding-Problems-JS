@@ -1346,20 +1346,76 @@ console.log(isValid); // ✅ true
 
 //Reverse an array without using inbuilt fn and without creating a new arr
 
-const arrE = [1, 2, 3, 4, 5, 6]; // even num arr
-const arrO = [1, 2, 3, 4, 5]; //odd num arr
+// const arrE = [1, 2, 3, 4, 5, 6]; // even num arr
+// const arrO = [1, 2, 3, 4, 5]; //odd num arr
 
-function reverseArr(arr) {
-  const loopLen = Math.floor(arr.length / 2);
-  const len = arr.length;
-  console.log(loopLen);
-  for (let i = 0; i <= loopLen; i++) {
-    let temp;
-    temp = arr[i];
-    arr[i] = arr[len - i - 1];
-    arr[len - i - 1] = temp;
+// function reverseArr(arr) {
+//   const loopLen = Math.floor(arr.length / 2);
+//   const len = arr.length;
+//   console.log(loopLen);
+//   for (let i = 0; i <= loopLen; i++) {
+//     let temp;
+//     temp = arr[i];
+//     arr[i] = arr[len - i - 1];
+//     arr[len - i - 1] = temp;
+//   }
+//   return arr;
+// }
+// console.log(reverseArr(arrO));
+// console.log(reverseArr(arrE));
+
+// // function clbk(value){
+// //   console.log(value);
+// // }
+// const a=[1,2].map(function clbk(value){
+//   console.log(value);
+//   return value
+// })
+// console.log(a);
+
+// remove repeated elems from an arr
+
+const arrE = [1, 2, 2, 3, 2, 2, 2, 3, 3, 4, 5, 6, 6, 4, 5, 6, 7, 9]; // even num arr
+// function showRepeated(arr) {
+//   const arrObj = {};
+//   const repeatedElems = [];
+//   for (let i = 0; i < arr.length; i++) {
+//     if (!arrObj[arr[i]]) {
+//       arrObj[arr[i]] = 1;
+//     } else if (arrObj[arr[i]]) {
+//       arrObj[arr[i]] = arrObj[arr[i]] + 1;
+//       arrObj[arr[i]] === 2 ? repeatedElems.push(arr[i]) : "";
+//     }
+//   }
+//   console.log(repeatedElems);
+// }
+function showRepeated(arr) {
+  let repeatedElems = [];
+  const sortedArr = [...arr].sort((a, b) => a - b);
+  for (let i = 0; i < arr.length; i++) {
+    sortedArr[i] === sortedArr[i + 1] && !repeatedElems.includes(sortedArr[i])
+      ? repeatedElems.push(sortedArr[i])
+      : "";
   }
-  return arr;
+  console.log(repeatedElems);
 }
-console.log(reverseArr(arrO));
-console.log(reverseArr(arrE));
+showRepeated(arrE);
+
+// Add spaces to a camelCased sentence
+
+function addSpace(str) {
+  const splitStr = str.split("");
+  let sentenceWithSpaces = "";
+  for (let i = 1; i < str.length; i++) {
+    const uppercased = splitStr[i].toUpperCase();
+    if (splitStr[i] === uppercased) {
+      sentenceWithSpaces += " " + splitStr[i];
+      continue;
+    }
+    sentenceWithSpaces += splitStr[i];
+  }
+  sentenceWithSpaces = splitStr[0] + sentenceWithSpaces;
+  console.log(sentenceWithSpaces);
+}
+const initialSentence = "MyNameIsMayank";
+addSpace(initialSentence);
