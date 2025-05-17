@@ -1343,3 +1343,23 @@ function validRondo(str) {
 
 const isValid = validRondo("ABACADA");
 console.log(isValid); // ✅ true
+
+//Reverse an array without using inbuilt fn and without creating a new arr
+
+const arrE = [1, 2, 3, 4, 5, 6]; // even num arr
+const arrO = [1, 2, 3, 4, 5]; //odd num arr
+
+function reverseArr(arr) {
+  const loopLen = Math.floor(arr.length / 2);
+  const len = arr.length;
+  console.log(loopLen);
+  for (let i = 0; i <= loopLen; i++) {
+    let temp;
+    temp = arr[i];
+    arr[i] = arr[len - i - 1];
+    arr[len - i - 1] = temp;
+  }
+  return arr;
+}
+console.log(reverseArr(arrO));
+console.log(reverseArr(arrE));
