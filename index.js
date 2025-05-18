@@ -1419,3 +1419,58 @@ function addSpace(str) {
 }
 const initialSentence = "MyNameIsMayank";
 addSpace(initialSentence);
+
+// write a fn to give anagram
+
+// const sampleArr = ["eat", "tea", "tan", "ate", "nat", "bat"];
+// function anaGram(arr) {
+//   function sumAl(word) {
+//     return word.split("").reduce((acc, curr) => {
+//       return curr.charCodeAt(0) + acc;
+//     }, 0);
+//   }
+//   const finalArr=[]
+//   const finalObj = {};
+//   for (let i = 0; i < arr.length; i++) {
+//     finalObj[arr[i]] = sumAl(arr[i]);
+//   }
+//   const finalObjSort = Object.entries(finalObj).sort((a, b) => a[1] - b[1]);
+
+//     for (let i = 0; i < arr.length; i++) {
+//       finalArr.flat(Infinity).includes(finalObjSort[i][0])
+//       finalArr.push(finalObjSort[i][0])
+//     }
+// }
+// anaGram(sampleArr);
+
+const sampleArr = ["eat", "tea", "tan", "ate", "nat", "bat"];
+
+function groupAnagrams(arr) {
+  const map = {};
+
+  for (let word of arr) {
+    // Sort the word's letters to form a key
+    const sorted = word.split("").sort().join("");
+    // Group by the sorted key
+    if (!map[sorted]) {
+      map[sorted] = [];
+    }
+    map[sorted].push(word);
+  }
+
+  // Return the grouped anagrams
+  return Object.values(map);
+}
+
+console.log(groupAnagrams(sampleArr));
+const a = undefined;
+if (a ?? a * 2) {
+  console.log("true");
+} else {
+  console.log("false");
+}
+
+const user = {};
+
+const userName=user?.name??"Guest";
+console.log(userName);
