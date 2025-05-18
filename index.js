@@ -1443,34 +1443,59 @@ addSpace(initialSentence);
 // }
 // anaGram(sampleArr);
 
-const sampleArr = ["eat", "tea", "tan", "ate", "nat", "bat"];
+// const sampleArr = ["eat", "tea", "tan", "ate", "nat", "bat"];
 
-function groupAnagrams(arr) {
-  const map = {};
+// function groupAnagrams(arr) {
+//   const map = {};
 
-  for (let word of arr) {
-    // Sort the word's letters to form a key
-    const sorted = word.split("").sort().join("");
-    // Group by the sorted key
-    if (!map[sorted]) {
-      map[sorted] = [];
+//   for (let word of arr) {
+//     // Sort the word's letters to form a key
+//     const sorted = word.split("").sort().join("");
+//     // Group by the sorted key
+//     if (!map[sorted]) {
+//       map[sorted] = [];
+//     }
+//     map[sorted].push(word);
+//   }
+
+//   // Return the grouped anagrams
+//   return Object.values(map);
+// }
+
+// console.log(groupAnagrams(sampleArr));
+// const a = undefined;
+// if (a ?? a * 2) {
+//   console.log("true");
+// } else {
+//   console.log("false");
+// }
+
+// // const user = {};
+
+// // const userName=user?.name??"Guest";
+// // console.log(userName);
+
+// const user = {
+//   name: "mayank",
+//   city: "Haldwani",
+// };
+// const cityAndUser = user?.name + user?.city + user?.age;
+
+// console.log(cityAndUser);
+
+const inputStr = "JavaScript is everyting";
+function reverseOrder(str) {
+  let finalStr = "";
+  let word = "";
+  for (let i = str.length - 1; i >= 0; i--) {
+    if (str[i] !== " ") {
+      word = str[i] + word;
+    } else {
+      finalStr += word + " ";
+      word = "";
     }
-    map[sorted].push(word);
   }
-
-  // Return the grouped anagrams
-  return Object.values(map);
+  finalStr = finalStr + word;
+  console.log(finalStr);
 }
-
-console.log(groupAnagrams(sampleArr));
-const a = undefined;
-if (a ?? a * 2) {
-  console.log("true");
-} else {
-  console.log("false");
-}
-
-const user = {};
-
-const userName=user?.name??"Guest";
-console.log(userName);
+reverseOrder(inputStr);
