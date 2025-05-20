@@ -1484,18 +1484,68 @@ addSpace(initialSentence);
 // console.log(cityAndUser);
 
 const inputStr = "JavaScript is everyting";
-function reverseOrder(str) {
-  let finalStr = "";
-  let word = "";
-  for (let i = str.length - 1; i >= 0; i--) {
-    if (str[i] !== " ") {
-      word = str[i] + word;
-    } else {
-      finalStr += word + " ";
-      word = "";
-    }
-  }
-  finalStr = finalStr + word;
-  console.log(finalStr);
+// function reverseOrder(str) {
+//   let finalStr = "";
+//   let word = "";
+//   for (let i = str.length - 1; i >= 0; i--) {
+//     if (str[i] !== " ") {
+//       word = str[i] + word;
+//     } else {
+//       finalStr += word + " ";
+//       word = "";
+//     }
+//   }
+//   finalStr = finalStr + word;
+//   console.log(finalStr);
+// }
+// reverseOrder(inputStr);
+
+// function factory(c) {
+//   return function inc() {
+//     console.dir(inc);
+//     console.log((c += 1));
+//   };
+// }
+// const increment = factory(29);
+// increment();
+// increment();
+
+// for (let i = 0; i < 3; i++) {
+//   setTimeout(() => console.log(i), 100);
+// }
+
+// let triangleType = function (nums) {
+//   if (!nums.length >= 3) return;
+//   if (!(nums[0] + nums[1] > nums[2] && nums[1] + nums[2] > nums[0]))
+//     return "none";
+
+//   const type =
+//     nums[0] === nums[1] && nums[1] === n[2]
+//       ? "equilateral"
+//       : nums[0] === nums[1] || nums[1] === nums[2]
+//       ? "isoceles"
+//       : "equlateral";
+
+//   return type;
+// };//Here a better solution is to sort the arr and see if side 0 and side1 are > side 2
+// for isocles side 0 = side 1 side 1 = side 2
+//for equi side 0 = side 1 = side 2
+//else scalene
+
+let triangleType = function (nums) {
+  if (!nums.length >= 3) return;
+  nums = nums.sort((a, b) => a - b);
+  if (nums[0] + nums[1] < nums[2]) return "none";
+  if (nums[0] === nums[1] && nums[1] === nums[2] && nums[0] === nums[2])
+    return "equilateral";
+  const type =
+    nums[0] === nums[1] || nums[1] === nums[2] ? "isoceles" : "scalene";
+};
+//over-riding and preferencing
+
+function greet() {
+  console.log("function greet");
 }
-reverseOrder(inputStr);
+
+var greet = 1;
+console.log(typeof greet); // num ✅
