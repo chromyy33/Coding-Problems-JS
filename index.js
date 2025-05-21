@@ -1549,3 +1549,95 @@ function greet() {
 
 var greet = 1;
 console.log(typeof greet); // num ✅
+
+// const valueMap = {
+//   I: 1,
+//   II: 2,
+//   III: 3,
+//   IV: 4,
+//   V: 5,
+//   X: 10,
+//   L: 50,
+//   C: 100,
+//   D: 500,
+//   M: 1000,
+// };
+
+// var romanToInt = function (s) {
+//   let sum = 0;
+//   const splitArr = s.split("");
+//   console.log(splitArr);
+//   for (let i = 0; i < splitArr.length; i++) {
+//     let current = valueMap[splitArr[i]];
+//     let next = valueMap[splitArr[i + 1]];
+//     let isGreater = next && current < next;
+//     if (next && isGreater) {
+//       sum -= current;
+//     } else {
+//       sum += current;
+//     }
+//   }
+//   return sum;
+// };
+// var romanToInt = function (s) {
+//   const valueMap = {
+//     I: 1,
+//     II: 2,
+//     III: 3,
+//     IV: 4,
+//     V: 5,
+//     VI: 6,
+//     VII: 7,
+//     VIII: 8,
+//     IX: 9,
+//     X: 10,
+//     L: 50,
+//     C: 100,
+//     D: 500,
+//     M: 1000,
+//   };
+//   let sum = 0;
+//   const splitArr = s.split("");
+//   console.log(splitArr);
+//   for (let i = 0; i < splitArr.length; i++) {
+//     let isGreater =
+//       valueMap[splitArr[i + 1]] &&
+//       valueMap[splitArr[i]] > valueMap[splitArr[i + 1]];
+//     console.log(isGreater);
+//     if ((splitArr[i + 1] && isGreater) || !splitArr[i + 1]) {
+//       sum += valueMap[splitArr[i]];
+//     } else {
+//       sum -= valueMap[splitArr[i]];
+//     }
+//   }
+//   return sum;
+// };
+// console.log(romanToInt("XIX"));
+
+// const valueMap = {
+//   I: 1,
+//   II: 2,
+//   III: 3,
+//   IV: 4,
+//   V: 5,
+//   X: 10,
+//   L: 50,
+//   C: 100,
+//   D: 500,
+//   M: 1000,
+// };
+
+// var romanToInt = function (s) {
+//   let sum = 0;
+//   for (let i = 0; i < s.length; i++) {
+//     let current = valueMap[s[i]];
+//     let next = valueMap[s[i + 1]];
+//     let isGreater = next && current < next;
+//     if (next && isGreater) {
+//       sum -= current;
+//     } else {
+//       sum += current;
+//     }
+//   }
+//   return sum;
+// }; //final optimized
