@@ -1641,3 +1641,46 @@ console.log(typeof greet); // num ✅
 //   }
 //   return sum;
 // }; //final optimized
+
+var longestCommonPrefix = function (strs) {
+  let len = strs.length;
+  strs = strs.map((str) => str.split("")).sort((a, b) => a.length - b.length);
+  let ans = strs[0];
+
+  for (let i = 0; i < len; i++) {
+    if (!strs[i + 1]) break; // if the next item doesn't exist, break
+    ans = ans.filter((char) => strs[i + 1].includes(char));
+  }
+  return ans.join("");
+  // console.log(ans.join("")); // join to show the actual prefix
+};
+
+longestCommonPrefix(["flow", "flower", "flight"]);
+
+function isBalancedArray(arr) {
+  if (arr.length === 0) return true;
+  let isBalanced = true;
+
+  const loopLen = arr.length / 2;
+  arr = arr.sort((a, b) => a - b);
+  for (let i = 0, j = arr.length - 1; i < loopLen; i++) {
+    if ((i === j && arr[i] !== 0) || -arr[i] !== arr[j - i]) {
+      return (isBalanced = false);
+    }
+  }
+  return isBalanced;
+}
+// console.log(isBalancedArray([1, -1, 2, -2])); // true
+// console.log(isBalancedArray([1, -1, 2, -2, 1, -1])); // true
+// console.log(isBalancedArray([1, -1, 2, -2, 1, 1])); // false
+// console.log(isBalancedArray([0, 0, 1, -1])); // true
+// console.log(isBalancedArray([0, 1, -1, 1])); // false
+// console.log(isBalancedArray([])); // true
+// console.log(isBalancedArray([3, -3, 3, -3, 3, -3])); // true
+// console.log(isBalancedArray([4, -4, 4, -4, 4])); // false
+// console.log(isBalancedArray([5, -5, -5, 5, 0, 0, 0])); // true
+// console.log(isBalancedArray([10, -10, 10, -10, 10])); // false
+console.log(isBalancedArray([1, 1, -1, 2, -2, -1])); // ❌ Expected: false
+console.log(isBalancedArray([2, 2, 2, -2, -2])); // ❌ Expected: false
+
+
