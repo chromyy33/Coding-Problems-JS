@@ -1704,8 +1704,50 @@ var isValidParenthesis = function (str) {
   return finalArr.length === 0;
 };
 
-console.log(isValidParenthesis("[]{}")); // true
-console.log(isValidParenthesis("[{()}]")); // true
-console.log(isValidParenthesis("[({})]")); // true
-console.log(isValidParenthesis("[(])")); // false
-console.log(isValidParenthesis("[")); // false
+// console.log(isValidParenthesis("[]{}")); // true
+// console.log(isValidParenthesis("[{()}]")); // true
+// console.log(isValidParenthesis("[({})]")); // true
+// console.log(isValidParenthesis("[(])")); // false
+// console.log(isValidParenthesis("[")); // false
+
+// var mergeTwoLists = function (list1, list2) {
+//   const mergedArr = [...list1, ...list2].sort((a, b) => a - b);
+//   return mergedArr;
+// };
+
+// console.log(mergeTwoLists([1, 2, 3], [3, 4, 5]));
+
+// let removeDuplicates = function (nums) {
+//   const loopLen = nums.length;
+//   const tracker = [nums[0]];
+//   const fTracker = [...new Set(nums)];
+//   console.log(fTracker);
+//   for (let i = 1; i < loopLen; i++) {
+//     if (fTracker[i]!==undefined&& tracker.includes(nums[i])) {
+//       nums[i] = fTracker[i];
+//     }
+//     tracker.push(fTracker[i]);
+//   }
+//   console.log(nums, fTracker.length);
+//   return fTracker.length;
+// };
+var removeDuplicates = function(nums) {
+    if (nums.length === 0) return 0;
+
+    let writeIndex = 1; // Start from index 1 because the first element is always unique
+
+    for (let i = 1; i < nums.length; i++) {
+        if (nums[i] !== nums[i - 1]) {
+            nums[writeIndex] = nums[i];
+            writeIndex++;
+        }
+    }
+console.log(nums);
+    return writeIndex;
+};
+
+// removeDuplicates([1, 2, 1, 3, 4, 3, 3, 2, 8, 9]);
+removeDuplicates([0, 0, 0, 1, 1, 2, 2, 3, 3, 4]);
+// removeDuplicates([1, 2]);
+// removeDuplicates([1, 2, 2, 3]);
+// removeDuplicates([-3, -1, -1, 0, 0, 0, 0, 0, 2]);
