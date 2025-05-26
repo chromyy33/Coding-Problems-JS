@@ -1765,3 +1765,77 @@ let removeElement = function (nums, val) {
 };
 console.log(removeElement([3, 2, 2, 3], 3));
 console.log(removeElement([0, 1, 2, 2, 3, 0, 4, 2], 2));
+
+// // with 2 arguments
+// function sum2(a){
+//  return function(b){
+//    return a + b;
+//  }
+// }
+
+// // with 3 arguments
+// function sum3(a){
+//  return function(b){
+//    return function(c){
+//      return a + b + c;
+//    }
+//  }
+// }
+
+// // notice the pattern here ? At every level,
+// // If there is another argument left, we return a new function
+// // else we execute the logic. Recursive thinking is required for // these pattern of problems.
+
+// //with n-arguments
+// function sum(a) {
+//   return function(b){
+//     if(b){
+//       return sum(a+b);
+//     }
+//     return a;
+//   }
+// }
+
+//28. Find the Index of the First Occurrence in a String -LC
+
+// let strStr = function (haystack, needle) {
+//   if (haystack === needle) return 0;
+
+//   let nIndex = 0;
+//   for (let i = 0; i < haystack.length; i++) {
+//     if (haystack[i] !== needle[nIndex]) {
+//       i=i-nIndex
+//       nIndex = 0;
+//     } else if (haystack[i] === needle[nIndex]) {
+//       nIndex++;
+//     }
+//     if (nIndex >= needle.length) {
+//       return i - nIndex + 1;
+//     }
+//   }
+//   return -1;
+// };
+let strStr = function (haystack, needle) {
+  if (haystack === needle) return 0;
+  if (needle === "") return 0;
+
+  let nIndex = 0;
+  for (let i = 0; i < haystack.length; i++) {
+    if (haystack[i] === needle[nIndex]) {
+      nIndex++;
+      if (nIndex === needle.length) {
+        return i - nIndex + 1;
+      }
+    } else {
+      // Reset i to the position after the start of the last match attempt
+      i = i - nIndex;
+      nIndex = 0;
+    }
+  }
+  return -1;
+};
+
+// console.log(strStr("sadbutsad", "sad"));
+// console.log(strStr("leetcode", "leeto"));
+// console.log(strStr("abc", "c"));
+console.log(strStr("mississippi","issip"));
