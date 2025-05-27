@@ -1838,4 +1838,25 @@ let strStr = function (haystack, needle) {
 // console.log(strStr("sadbutsad", "sad"));
 // console.log(strStr("leetcode", "leeto"));
 // console.log(strStr("abc", "c"));
-console.log(strStr("mississippi","issip"));
+console.log(strStr("mississippi", "issip"));
+
+var searchInsert = function (nums, target) {
+  if (nums.length === 1 && nums[0] === target) return 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (i === nums.length - 1 && nums[i] < target) {
+      return i + 1;
+    } 
+    if (nums[i] >= target) return i;
+  }
+};
+
+console.log(searchInsert([1, 2, 3, 4, 6], 7));
+console.log(searchInsert([1,3,5,6],5));
+console.log([1,3],3);
+
+
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
