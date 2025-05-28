@@ -1845,18 +1845,29 @@ var searchInsert = function (nums, target) {
   for (let i = 0; i < nums.length; i++) {
     if (i === nums.length - 1 && nums[i] < target) {
       return i + 1;
-    } 
+    }
     if (nums[i] >= target) return i;
   }
 };
 
 console.log(searchInsert([1, 2, 3, 4, 6], 7));
-console.log(searchInsert([1,3,5,6],5));
-console.log([1,3],3);
+console.log(searchInsert([1, 3, 5, 6], 5));
+console.log([1, 3], 3);
 
+var lengthOfLastWord = function (s) {
+  if (s.length === 0) return 0;
+  if (s.length === 1 && s[0] !== " ") return 1;
+  let count = 0;
 
-/**
- * @param {number[]} nums
- * @param {number} target
- * @return {number}
- */
+  for (let i = s.length - 1; i >= 0; i--) {
+    if (s[i] !== " ") count++;
+    else if (count > 1) {
+      break;
+    }
+  }
+  return count;
+};
+
+console.log(lengthOfLastWord("   fly me   to   the moon  "));
+console.log(lengthOfLastWord("Hello World"));
+console.log(lengthOfLastWord("a "));
