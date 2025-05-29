@@ -1683,26 +1683,26 @@ console.log(typeof greet); // num ✅
 // console.log(isBalancedArray([1, 1, -1, 2, -2, -1])); // ❌ Expected: false
 // console.log(isBalancedArray([2, 2, 2, -2, -2])); // ❌ Expected: false
 
-var isValidParenthesis = function (str) {
-  const finalArr = [];
-  const pairs = {
-    ")": "(",
-    "]": "[",
-    "}": "{",
-  };
+// var isValidParenthesis = function (str) {
+//   const finalArr = [];
+//   const pairs = {
+//     ")": "(",
+//     "]": "[",
+//     "}": "{",
+//   };
 
-  for (let char of str) {
-    if (char === "(" || char === "[" || char === "{") {
-      finalArr.push(char);
-    } else if (char === ")" || char === "]" || char === "}") {
-      if (finalArr.pop() !== pairs[char]) {
-        return false;
-      }
-    }
-  }
+//   for (let char of str) {
+//     if (char === "(" || char === "[" || char === "{") {
+//       finalArr.push(char);
+//     } else if (char === ")" || char === "]" || char === "}") {
+//       if (finalArr.pop() !== pairs[char]) {
+//         return false;
+//       }
+//     }
+//   }
 
-  return finalArr.length === 0;
-};
+//   return finalArr.length === 0;
+// };
 
 // console.log(isValidParenthesis("[]{}")); // true
 // console.log(isValidParenthesis("[{()}]")); // true
@@ -1753,18 +1753,18 @@ removeDuplicates([0, 0, 0, 1, 1, 2, 2, 3, 3, 4]);
 // removeDuplicates([-3, -1, -1, 0, 0, 0, 0, 0, 2]);
 
 // 27. Remove Element-LC
-let removeElement = function (nums, val) {
-  let writeIndex = 0;
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] !== val) {
-      nums[writeIndex] = nums[i];
-      writeIndex++;
-    }
-  }
-  return nums;
-};
-console.log(removeElement([3, 2, 2, 3], 3));
-console.log(removeElement([0, 1, 2, 2, 3, 0, 4, 2], 2));
+// let removeElement = function (nums, val) {
+//   let writeIndex = 0;
+//   for (let i = 0; i < nums.length; i++) {
+//     if (nums[i] !== val) {
+//       nums[writeIndex] = nums[i];
+//       writeIndex++;
+//     }
+//   }
+//   return nums;
+// };
+// console.log(removeElement([3, 2, 2, 3], 3));
+// console.log(removeElement([0, 1, 2, 2, 3, 0, 4, 2], 2));
 
 // // with 2 arguments
 // function sum2(a){
@@ -1815,59 +1815,140 @@ console.log(removeElement([0, 1, 2, 2, 3, 0, 4, 2], 2));
 //   }
 //   return -1;
 // };
-let strStr = function (haystack, needle) {
-  if (haystack === needle) return 0;
-  if (needle === "") return 0;
+// let strStr = function (haystack, needle) {
+//   if (haystack === needle) return 0;
+//   if (needle === "") return 0;
 
-  let nIndex = 0;
-  for (let i = 0; i < haystack.length; i++) {
-    if (haystack[i] === needle[nIndex]) {
-      nIndex++;
-      if (nIndex === needle.length) {
-        return i - nIndex + 1;
-      }
-    } else {
-      // Reset i to the position after the start of the last match attempt
-      i = i - nIndex;
-      nIndex = 0;
-    }
-  }
-  return -1;
-};
+//   let nIndex = 0;
+//   for (let i = 0; i < haystack.length; i++) {
+//     if (haystack[i] === needle[nIndex]) {
+//       nIndex++;
+//       if (nIndex === needle.length) {
+//         return i - nIndex + 1;
+//       }
+//     } else {
+//       // Reset i to the position after the start of the last match attempt
+//       i = i - nIndex;
+//       nIndex = 0;
+//     }
+//   }
+//   return -1;
+// };
 
 // console.log(strStr("sadbutsad", "sad"));
 // console.log(strStr("leetcode", "leeto"));
 // console.log(strStr("abc", "c"));
-console.log(strStr("mississippi", "issip"));
+// console.log(strStr("mississippi", "issip"));
 
-var searchInsert = function (nums, target) {
-  if (nums.length === 1 && nums[0] === target) return 0;
-  for (let i = 0; i < nums.length; i++) {
-    if (i === nums.length - 1 && nums[i] < target) {
-      return i + 1;
+// var searchInsert = function (nums, target) {
+//   if (nums.length === 1 && nums[0] === target) return 0;
+//   for (let i = 0; i < nums.length; i++) {
+//     if (i === nums.length - 1 && nums[i] < target) {
+//       return i + 1;
+//     }
+//     if (nums[i] >= target) return i;
+//   }
+// };
+
+// console.log(searchInsert([1, 2, 3, 4, 6], 7));
+// console.log(searchInsert([1, 3, 5, 6], 5));
+// console.log([1, 3], 3);
+
+// var lengthOfLastWord = function (s) {
+//   if (s.length === 0) return 0;
+//   if (s.length === 1 && s[0] !== " ") return 1;
+//   let count = 0;
+
+//   for (let i = s.length - 1; i >= 0; i--) {
+//     if (s[i] !== " ") count++;
+//     else if (count >= 1) {
+//       break;
+//     }
+//   }
+//   return count;
+// };
+
+// console.log(lengthOfLastWord("   fly me   to   the moon  "));
+// console.log(lengthOfLastWord("Hello World"));
+// console.log(lengthOfLastWord("a "));
+
+//EC in JS
+// function grandParent() {
+//   function parent() {
+//     let x = 9;
+//     function child() {}
+//     function sibling() {
+//       x = x + 1;
+//     }
+//     child();
+//     // sibling();
+//     console.log(x);
+//   }
+//   parent();
+// }
+// grandParent();
+// var a = 10;
+// (function () {
+//   console.log(a);
+//    var a = 20;
+// })();
+
+// var plusOne = function (digits) {
+// // const joinedArr = String(BigInt(+digits.join("") + 1))
+// //     .split("")
+// //     .map((a) => +a);
+// const joinedArr= BigInt(Number(digits.join('')))+BigInt(1)
+// // const joinedArr= +digits.join('')
+
+//   return joinedArr;
+// };
+
+// console.log(plusOne([6, 1, 4, 5, 3, 9, 0, 1, 9, 5, 1, 8, 6, 7, 0, 5, 5, 4, 3]));
+// var plusOne = function (digits) {
+//   let res = [];
+//   let carry = 0;
+//   let left = 0;
+//   const lastElem = digits.length - 1;
+//   for (let i = lastElem; i >= 0; i--) {
+//     let added = i === lastElem ? digits[i] + 1 + carry : digits[i] + carry;
+//     if (added >= 10) {
+//       carry = 1;
+//       left = added - 10;
+//     } else {
+//       left = added + carry;
+//       carry = 0;
+      
+//     }
+//     res[i] = left;
+//   }
+//   if (carry === 1) {
+//     res.unshift(1);
+//   }
+
+//   return res;
+// };
+
+// console.log(plusOne([9]));
+var plusOne = function (digits) {
+  let res = [...digits];
+  let carry = 1; // Always start with 1 since we're adding one
+
+  for (let i = res.length - 1; i >= 0; i--) {
+    let sum = res[i] + carry;
+    if (sum >= 10) {
+      res[i] = sum - 10;
+      carry = 1;
+    } else {
+      res[i] = sum;
+      carry = 0;
+      break; // No more carry, break early
     }
-    if (nums[i] >= target) return i;
   }
-};
 
-console.log(searchInsert([1, 2, 3, 4, 6], 7));
-console.log(searchInsert([1, 3, 5, 6], 5));
-console.log([1, 3], 3);
-
-var lengthOfLastWord = function (s) {
-  if (s.length === 0) return 0;
-  if (s.length === 1 && s[0] !== " ") return 1;
-  let count = 0;
-
-  for (let i = s.length - 1; i >= 0; i--) {
-    if (s[i] !== " ") count++;
-    else if (count > 1) {
-      break;
-    }
+  if (carry === 1) {
+    res.unshift(1);
   }
-  return count;
-};
 
-console.log(lengthOfLastWord("   fly me   to   the moon  "));
-console.log(lengthOfLastWord("Hello World"));
-console.log(lengthOfLastWord("a "));
+  return res;
+};
+console.log(plusOne([9]));
