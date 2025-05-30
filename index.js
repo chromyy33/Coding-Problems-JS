@@ -1917,7 +1917,7 @@ removeDuplicates([0, 0, 0, 1, 1, 2, 2, 3, 3, 4]);
 //     } else {
 //       left = added + carry;
 //       carry = 0;
-      
+
 //     }
 //     res[i] = left;
 //   }
@@ -1928,27 +1928,51 @@ removeDuplicates([0, 0, 0, 1, 1, 2, 2, 3, 3, 4]);
 //   return res;
 // };
 
+// // console.log(plusOne([9]));
+// var plusOne = function (digits) {
+//   let res = [...digits];
+//   let carry = 1; // Always start with 1 since we're adding one
+
+//   for (let i = res.length - 1; i >= 0; i--) {
+//     let sum = res[i] + carry;
+//     if (sum >= 10) {
+//       res[i] = sum - 10;
+//     } else {
+//       res[i] = sum;
+//       carry = 0;
+//       break; // No more carry, break early
+//     }
+//   }
+
+//   if (carry === 1) {
+//     res.unshift(1);
+//   }
+
+//   return res;
+// };
 // console.log(plusOne([9]));
-var plusOne = function (digits) {
-  let res = [...digits];
-  let carry = 1; // Always start with 1 since we're adding one
 
-  for (let i = res.length - 1; i >= 0; i--) {
-    let sum = res[i] + carry;
-    if (sum >= 10) {
-      res[i] = sum - 10;
-      carry = 1;
-    } else {
-      res[i] = sum;
-      carry = 0;
-      break; // No more carry, break early
-    }
+var addBinary = function (a, b) {
+  if (a === "0" && b === "0") {
+    return "0";
   }
 
-  if (carry === 1) {
-    res.unshift(1);
+  const maxLen = Math.max(a.length, b.length);
+  a = a.padStart(maxLen, "0");
+  b = b.padStart(maxLen, "0");
+
+  let res = [];
+  let carry = 0;
+
+  for (let i = maxLen - 1; i >= 0; i--) {
+    const total = Number(a[i]) + Number(b[i]) + carry;
+    res[i] = total % 2;
+    carry = total >= 2 ? 1 : 0;
   }
 
-  return res;
+  if (carry === 1) res.unshift(carry);
+
+  return res.join("");
 };
-console.log(plusOne([9]));
+
+console.log(addBinary("0111", "0011"));
