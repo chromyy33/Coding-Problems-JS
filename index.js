@@ -1976,3 +1976,17 @@ var addBinary = function (a, b) {
 };
 
 console.log(addBinary("0111", "0011"));
+
+var mySqrt = function (x) {
+  let oddNum = 1;
+  let i = 1;
+  let diff = x - 1;
+
+  while (diff - (oddNum + i * 2)>=0) {
+    diff = diff - (oddNum + i * 2);
+    i++;
+  }
+  return i;
+};
+
+
