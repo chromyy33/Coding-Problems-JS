@@ -1952,41 +1952,72 @@ removeDuplicates([0, 0, 0, 1, 1, 2, 2, 3, 3, 4]);
 // };
 // console.log(plusOne([9]));
 
-var addBinary = function (a, b) {
-  if (a === "0" && b === "0") {
-    return "0";
-  }
+// var addBinary = function (a, b) {
+//   if (a === "0" && b === "0") {
+//     return "0";
+//   }
 
-  const maxLen = Math.max(a.length, b.length);
-  a = a.padStart(maxLen, "0");
-  b = b.padStart(maxLen, "0");
+//   const maxLen = Math.max(a.length, b.length);
+//   a = a.padStart(maxLen, "0");
+//   b = b.padStart(maxLen, "0");
+
+//   let res = [];
+//   let carry = 0;
+
+//   for (let i = maxLen - 1; i >= 0; i--) {
+//     const total = Number(a[i]) + Number(b[i]) + carry;
+//     res[i] = total % 2;
+//     carry = total >= 2 ? 1 : 0;
+//   }
+
+//   if (carry === 1) res.unshift(carry);
+
+//   return res.join("");
+// };
+
+// console.log(addBinary("0111", "0011"));
+
+// var mySqrt = function (x) {
+//   let oddNum = 1;
+//   let i = 1;
+//   let diff = x - 1;
+
+//   while (diff - (oddNum + i * 2)>=0) {
+//     diff = diff - (oddNum + i * 2);
+//     i++;
+//   }
+//   return i;
+// };
+
+var climbStairs = function (n) {
+  if (n === 0) return 0;
+  let count = 1;
+  let leftOverOne = n;
+  let leftOverTwo = n - 2;
 
   let res = [];
-  let carry = 0;
-
-  for (let i = maxLen - 1; i >= 0; i--) {
-    const total = Number(a[i]) + Number(b[i]) + carry;
-    res[i] = total % 2;
-    carry = total >= 2 ? 1 : 0;
+  for (let i = 0; i < n; i++) {
+    leftOverOne = leftOverOne - 1;
+    if (leftOverOne > 2) {
+      res.push(1);
+    } else if (leftOverOne === 2) {
+      res.push(2);
+    }
   }
-
-  if (carry === 1) res.unshift(carry);
-
-  return res.join("");
+  res.unshift(1);
+  console.log(res);
 };
 
-console.log(addBinary("0111", "0011"));
+climbStairs(5);
 
-var mySqrt = function (x) {
-  let oddNum = 1;
-  let i = 1;
-  let diff = x - 1;
-
-  while (diff - (oddNum + i * 2)>=0) {
-    diff = diff - (oddNum + i * 2);
-    i++;
-  }
-  return i;
-};
-
+// var merge = function (nums1, m, nums2, n) {
+//   const slicedNums = nums1.slice(0,m);
+//   console.log(slicedNums);
+//   const newArr = [...slicedNums, ...nums2]
+//     .filter((a) => a != 0)
+//     .sort((a, b) => a - b);
+//   for (let i = 0; i < m + n; i++) {
+//     nums1[i] = newArr[i];
+//   }
+// };
 
