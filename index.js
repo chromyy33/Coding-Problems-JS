@@ -2021,3 +2021,40 @@ climbStairs(5);
 //   }
 // };
 
+// var generate = function (numRows) {
+//   let res = [[1]];
+//   if (numRows === 1) return res;
+//   if (numRows >= 2) res.push([1, 1]);
+//   let curr = [1, 2, 1];
+//   for (let i = 2; i < numRows; i++) {
+//     let arr = [];
+//     res.push(curr);
+//     for (let k = 0; k < curr.length-1; k++) {
+//       let sum = curr[k] + curr[k + 1];
+//       arr.push(sum);
+//     }
+//     curr = [1, ...arr, 1];
+//   }
+//   return res;
+// };
+
+// console.log(generate(2));
+var generate = function (numRows) {
+  const res = [[1]];
+
+  if (numRows === 1) return res;
+  if (numRows >= 2) res.push([1, 1]);
+
+  let curr = [1, 2, 1];
+  for (let i = 2; i < numRows - 1; i++) {
+    res.push(curr);
+    let nextRow = [];
+    for (let j = 0; j < curr.length - 1; j++) {
+      nextRow.push(curr[j] + curr[j + 1]);
+    }
+    curr = [1, ...nextRow, 1];
+  }
+
+  return res;
+};
+console.log(generate(9));
