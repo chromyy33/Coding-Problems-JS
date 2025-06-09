@@ -2039,22 +2039,37 @@ climbStairs(5);
 // };
 
 // console.log(generate(2));
-var generate = function (numRows) {
-  const res = [[1]];
+// var generate = function (numRows) {
+//   const res = [[1]];
 
-  if (numRows === 1) return res;
-  if (numRows >= 2) res.push([1, 1]);
+//   if (numRows === 1) return res;
+//   if (numRows >= 2) res.push([1, 1]);
 
-  let curr = [1, 2, 1];
-  for (let i = 2; i < numRows - 1; i++) {
-    res.push(curr);
-    let nextRow = [];
-    for (let j = 0; j < curr.length - 1; j++) {
-      nextRow.push(curr[j] + curr[j + 1]);
-    }
-    curr = [1, ...nextRow, 1];
+//   let curr = [1, 2, 1];
+//   for (let i = 2; i < numRows - 1; i++) {
+//     res.push(curr);
+//     let nextRow = [];
+//     for (let j = 0; j < curr.length - 1; j++) {
+//       nextRow.push(curr[j] + curr[j + 1]);
+//     }
+//     curr = [1, ...nextRow, 1];
+//   }
+
+//   return res;
+// };
+// console.log(generate(9));
+
+var maxProfit = function (prices) {
+  let currSumm = 0;
+  let maxSum = 0;
+  for (let i = 0; i < prices.length - 1; i++) {
+    let detla = prices[i + 1] - prices[i];
+    currSumm = Math.max(0, currSumm + detla);
+    maxSum=Math.max(maxSum,currSumm)
   }
-
-  return res;
+  return maxSum
 };
-console.log(generate(9));
+
+console.log(maxProfit([5, 2, 9, 6, 1, 4]));
+console.log(maxProfit([3, 2, 3, 1, 6, 11, 4]));
+console.log(maxProfit([7, 1, 5, 3, 6, 4]));
