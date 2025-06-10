@@ -2065,11 +2065,24 @@ var maxProfit = function (prices) {
   for (let i = 0; i < prices.length - 1; i++) {
     let detla = prices[i + 1] - prices[i];
     currSumm = Math.max(0, currSumm + detla);
-    maxSum=Math.max(maxSum,currSumm)
+    maxSum = Math.max(maxSum, currSumm);
   }
-  return maxSum
+  return maxSum;
 };
 
 console.log(maxProfit([5, 2, 9, 6, 1, 4]));
 console.log(maxProfit([3, 2, 3, 1, 6, 11, 4]));
 console.log(maxProfit([7, 1, 5, 3, 6, 4]));
+
+var isPalindrome = function (s) {
+  if (s === " ") return true;
+  let flag = true;
+  const cleaned = s.replace(/[^a-zA-Z0-9]/g, "");
+  console.log(cleaned);
+  const loopLen = Math.floor(cleaned.length / 2);
+  for (let i = 0, j = cleaned.length - 1; i < loopLen; i++, j--) {
+    if (cleaned[i].toLowerCase() !== cleaned[j].toLowerCase()) return false;
+  }
+  return flag
+};
+console.log(isPalindrome("A man, a plan, a canal: Panama"));
