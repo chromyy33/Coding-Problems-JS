@@ -2102,3 +2102,18 @@ var singleNumber = function (nums) {
   }
   return nums[nums.length - 1];
 };
+
+var majorityElement = function (nums) {
+    if(nums.length===1)return nums[0]
+  let objMap = {};
+
+  for (let i = 0; i < nums.length; i++) {
+    if (objMap[nums[i]]) {
+      objMap[nums[i]] += 1;
+      if (objMap[nums[i]] > nums.length / 2) return nums[i];
+    } else {
+      objMap[nums[i]] = 1;
+    }
+  }
+};
+
