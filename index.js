@@ -2104,7 +2104,7 @@ var singleNumber = function (nums) {
 };
 
 var majorityElement = function (nums) {
-    if(nums.length===1)return nums[0]
+  if (nums.length === 1) return nums[0];
   let objMap = {};
 
   for (let i = 0; i < nums.length; i++) {
@@ -2117,3 +2117,35 @@ var majorityElement = function (nums) {
   }
 };
 
+//LC 190 Reverse Bits
+/**
+ * @param {number} n - a positive integer
+ * @return {number} - a positive integer
+ */
+//10010001001000
+function binaryToInt(binStr) {
+  let num = 0;
+  for (let i = 0; i < binStr.length; i++) {
+    if (binStr[i] == 0) continue;
+    else {
+      const currNum = Number(binStr[i]) * 2 ** i;
+      num += currNum;
+    }
+  }
+  return num;
+}
+var reverseBits = function (n) {
+  const reversedBinaryStr = n.split("").reverse().join("");
+  return binaryToInt(reversedBinaryStr);
+};
+console.log(reverseBits("00000010100101000001111010011100"));
+
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var hammingWeight = function (n) {
+  const binaryEq = n.toString(2);
+  return binaryEq.split("").filter((a) => a === "1").length;
+};
+hammingWeight(11);

@@ -31,10 +31,11 @@ body {
   }
 }
 span.variant {
-  margin-block:2rem;
+  margin-block: 2rem;
   text-align: center;
   display: inline-block;
   width: 200px;
   background-color: aliceblue;
   color: red;
 }
+
