@@ -2149,3 +2149,20 @@ var hammingWeight = function (n) {
   return binaryEq.split("").filter((a) => a === "1").length;
 };
 hammingWeight(11);
+
+var isIsomorphic = function (s, t) {
+  const charMap = {};
+  const used = {};
+  for (let i = 0; i < s.length; i++) {
+    if (!charMap[s[i]]) {
+      if (used[t[i]]) {
+        return false;
+      }
+      charMap[s[i]] = t[i];
+      used[t[i]] = true;
+    } else if (charMap[s[i]] !== t[i]) {
+      return false;
+    }
+  }
+  return true;
+};
