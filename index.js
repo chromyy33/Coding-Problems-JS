@@ -2178,3 +2178,39 @@ var containsDuplicate = function (nums) {
   }
   return true;
 };
+
+// /**
+//  * @param {number[]} nums
+//  * @param {number} k
+//  * @return {boolean}
+//  */
+// var containsNearbyDuplicate = function (nums, k) {
+//   for (let i = 0, j = 1; i < nums.length; j++) {
+//     //reset vars
+//     if (j > nums.length) {
+//       j = 0;
+//       i++;
+//     }
+//     // Looking for a duplicate value
+//     if (nums[i] === nums[j] && Math.abs(i - j) <= k) {
+//       return true;
+//     }
+//   }
+//   return false
+// };
+// //Input: nums = [1,0,1,1], k = 1
+var containsNearbyDuplicate = function (nums, k) {
+  let l=0;
+    for(let i=0;i<nums.length;i++){
+        for(let j=i+1; j <= i+k && j< nums.length;j++){
+            if(nums[i] === nums[j]){
+                return true;
+            }
+            l++;
+            if(l >= 100000) return false;
+        }
+    }
+
+    return false;
+};
+
