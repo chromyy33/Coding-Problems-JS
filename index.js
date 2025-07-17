@@ -2200,17 +2200,47 @@ var containsDuplicate = function (nums) {
 // };
 // //Input: nums = [1,0,1,1], k = 1
 var containsNearbyDuplicate = function (nums, k) {
-  let l=0;
-    for(let i=0;i<nums.length;i++){
-        for(let j=i+1; j <= i+k && j< nums.length;j++){
-            if(nums[i] === nums[j]){
-                return true;
-            }
-            l++;
-            if(l >= 100000) return false;
-        }
+  let l = 0;
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i + 1; j <= i + k && j < nums.length; j++) {
+      if (nums[i] === nums[j]) {
+        return true;
+      }
+      l++;
+      if (l >= 100000) return false;
     }
+  }
 
-    return false;
+  return false;
 };
 
+function generateShades(color) {
+  //Convert the baseHEXCode to RGB
+  const rgbObj = {};
+  //Remove #
+  const colorStr = color.slice(1);
+  for (let i = 0; i < 3; i++) {
+    const hexStr = colorStr.slice(i, i + 2);
+    const rgbEQ = parseInt(hexStr, 16);
+  }
+}
+generateShades("#FAB893");
+
+//Power of two
+
+/**
+ * @param {number} n
+ * @return {boolean}
+ */
+var isPowerOfTwo = function(n) {
+  if (n === 1) return true;     // base case: 2^0 = 1
+  if (n <= 0) return false;     // base case for 0 and negative numbers
+  if (n % 2 !== 0) return false;// filter odd numbers 
+
+  while (n % 1 === 0) {         // continue while n is a whole number
+    if (n === 1) return true;
+    n = n / 2;
+  }
+
+  return false;
+};
